@@ -31,7 +31,7 @@ class User extends Common
 	 */
     public function groups()
     {
-        return $this->belongsToMany('group', '__ADMIN_ACCESS__', 'group_id', 'user_id');
+        return $this->belongsToMany('group', '__admin_access__', 'group_id', 'user_id');
     }
 
     /**
