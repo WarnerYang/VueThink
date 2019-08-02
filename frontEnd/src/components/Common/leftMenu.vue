@@ -1,26 +1,15 @@
 <template>
-<!-- <div>
-<el-menu mode="vertical" default-active="/table" class="el-menu-vertical-demo" @select="handleselect" theme="dark" router>
-<el-menu-item-group v-for="menu in menuData" :title="menu.title">
-<el-menu-item v-for="item in menu.items" :index="item.path">&nbsp;&nbsp;&nbsp;&nbsp;{{item.name}}</el-menu-item>
-</el-menu-item-group>
-</el-menu>
-</div> -->
-
-	<div>  
-		<div v-for="secMenu in menuData">
-			<div class="c-light-gray p-l-10 m-t-15">{{secMenu.title}}</div>
-			<div class="h-50" v-for="item in secMenu.child">
-				<template v-if="item.menu == menu">
-					<div class="w-100p h-50 p-l-40 left-menu pointer c-blue" @click="routerChange(item)">{{item.title}}</div>
-				</template>
-				<template v-else>
-					<div class="w-100p h-50 p-l-40 left-menu pointer c-gra" @click="routerChange(item)">
-						{{item.title}}
-					</div>
-				</template>
-			</div>
-		</div>
+	<div>
+        <el-menu :default-active=menu class="el-menu-vertical-demo" theme="dark">
+            <div v-for="(secMenu, idx) in menuData" :key='idx'>
+                <el-submenu :index=idx+filling>
+                    <template slot="title">{{secMenu.title}}</template>
+                    <div v-for="(item, idx2) in secMenu.child" :key='idx2'>
+                        <el-menu-item :index=item.menu :class="item.menu == menu ? 'is-active':''" @click="routerChange(item)">{{item.title}}</el-menu-item>
+                    </div>
+                </el-submenu>
+            </div>
+        </el-menu>
 	</div>
 </template>
 
@@ -29,6 +18,7 @@ export default {
   props: ['menuData', 'menu'],
   data() {
     return {
+      filling: '0000'
     }
   },
   methods: {

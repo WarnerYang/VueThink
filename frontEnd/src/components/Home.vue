@@ -10,11 +10,11 @@
         </template>
 			</el-col>
 			<el-col :span="16" class="ofv-hd">
-				<div class="fl p-l-20 p-r-20 top-menu" :class="{'top-active': menu.selected}" v-for="menu in topMenu" @click="switchTopMenu(menu)">{{menu.title}}</div>
+				<div class="fl p-l-20 p-r-20 top-menu" :class="{'top-active': menu.selected}" v-for="menu in topMenu" @click="switchTopMenu(menu)" :key=menu.id>{{menu.title}}</div>
 			</el-col>
 			<el-col :span="4" class="pos-rel">
-				<el-dropdown @command="handleMenu" class="user-menu">
-		      <span class="el-dropdown-link c-gra" style="cursor: default">
+				<el-dropdown trigger="click" @command="handleMenu" class="user-menu">
+		      <span class="el-dropdown-link c-gra" style="cursor: pointer">
 		        {{username}}&nbsp;&nbsp;<i class="fa fa-user" aria-hidden="true"></i>
 		      </span>
 		      <el-dropdown-menu slot="dropdown">
@@ -63,10 +63,11 @@
 	}
 	
 	.panel-top {
-		height: 60px;
-		line-height: 60px;
-		background: #1F2D3D;
-		color: #c0ccda;
+    height: 60px;
+    line-height: 60px;
+    background: #324057;
+    color: #c0ccda;
+    border-bottom: 1px solid #1f2d3d;
 	}
 	
 	.panel-center {
