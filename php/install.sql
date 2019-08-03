@@ -18,11 +18,12 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for oa_admin_access
 -- ----------------------------
-DROP TABLE IF EXISTS `oa_admin_access`;
 CREATE TABLE `oa_admin_access` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
-  `group_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `group_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of oa_admin_access
