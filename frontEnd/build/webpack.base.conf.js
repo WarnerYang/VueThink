@@ -13,7 +13,7 @@ var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 // define the different HOST between development and production environment
 var DEV_HOST = JSON.stringify('http://vuethink.test/')
-var PUB_HOST = JSON.stringify('https://vuethink-api.yanghuaqiang.com/')
+var PUB_HOST = JSON.stringify('https://vuethink.yanghuaqiang.com/api')
 
 module.exports = {
   entry: {
