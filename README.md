@@ -104,7 +104,8 @@ VueThink是基于MIT协议的开源框架，它完全免费。你可以免费下
 ### 方式一. 前后端独立域名
 - 后端 api.example.com
 - 前端 admin.example.com
-比较简单，注意跨域问题
+
+比较简单，路由重写，注意跨域问题
 
 
 ### 方式二. 前后端同一域名
@@ -123,26 +124,36 @@ example.com.conf
 ```
 server
     {
+        listen 80;
+        #listen [::]:80;
+        server_name example.com ;
+	#重定向https
+	rewrite ^(.*)$ https://$server_name$1 permanent;
+    }
+server
+    {
         listen 443 ssl http2;
         #listen [::]:443 ssl http2;
         server_name example.com ;
         index index.html index.htm index.php default.html default.htm default.php;
+	#指向项目目录，下层还有frontEnd和php，根据url来匹配
         root  /home/wwwroot/vuethink;
         
         #ssl on;
-        #ssl config
+        #ssl 配置
 
         include enable-php.conf;
-
+	
+	#静态资源配置
         location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|woff|woff2|ttf)$
         {
-	          root  /home/wwwroot/vuethink/frontEnd/dist;
+	    root  /home/wwwroot/vuethink/frontEnd/dist;
             expires      30d;
         }
 
         location ~ .*\.(js|css)?$
         {
-	          root  /home/wwwroot/vuethink/frontEnd/dist;
+	    root  /home/wwwroot/vuethink/frontEnd/dist;
             expires      12h;
         }
 
@@ -154,16 +165,21 @@ server
         {
             deny all;
         }
+	
+	# 域名默认重定向到 https://example.com/admin/
+        location / {
+            rewrite ^(.*)$ https://$server_name/admin/;
+        }
 
-        #vue config
+        #vue 配置，匹配 /admin/
         location /admin/ {
              try_files $uri $uri/  /frontEnd/dist/index.html last;
         }
         
-        #thinkphp config
+        #thinkphp 配置，匹配 /api/
         location /api/ {
            if (!-e $request_filename){
-              rewrite  ^/api/(.*)$  /php/index.php?s=$1  last;
+              rewrite  ^/api/(.*)$  /php/public/index.php?s=$1  last;
               break;
            }
         }
