@@ -95,9 +95,83 @@ VueThink是基于MIT协议的开源框架，它完全免费。你可以免费下
 请参考[ThinPHP重写](https://www.kancloud.cn/manual/thinkphp5_1/353955)
 ```
 
-
-
 ### 前端搭建
 ```
 请参考frontEnd里的README文件
 ```
+
+## 部署 Linux
+### 方式一. 前后端独立域名
+- 后端 api.example.com
+- 前端 admin.example.com
+比较简单，注意跨域问题
+
+
+### 方式二. 前后端同一域名
+- example.com
+- 后端 example.com/api/
+- 前端 example.com/admin/
+
+修改`src/main.js` ，把`history`改成`hash`，避免页面空白。`hash`模式`url`会带上`#`号
+```
+const router = new VueRouter({
+  mode: 'hash',
+```
+
+nginx vhost 配置示例，路由重写和资源加载设置
+example.com.conf
+```
+server
+    {
+        listen 443 ssl http2;
+        #listen [::]:443 ssl http2;
+        server_name example.com ;
+        index index.html index.htm index.php default.html default.htm default.php;
+        root  /home/wwwroot/vuethink;
+        
+        #ssl on;
+        #ssl config
+
+        include enable-php.conf;
+
+        location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|woff|woff2|ttf)$
+        {
+	          root  /home/wwwroot/vuethink/frontEnd/dist;
+            expires      30d;
+        }
+
+        location ~ .*\.(js|css)?$
+        {
+	          root  /home/wwwroot/vuethink/frontEnd/dist;
+            expires      12h;
+        }
+
+        location ~ /.well-known {
+            allow all;
+        }
+
+        location ~ /\.
+        {
+            deny all;
+        }
+
+        #vue config
+        location /admin/ {
+             try_files $uri $uri/  /frontEnd/dist/index.html last;
+        }
+        
+        #thinkphp config
+        location /api/ {
+           if (!-e $request_filename){
+              rewrite  ^/api/(.*)$  /php/index.php?s=$1  last;
+              break;
+           }
+        }
+
+        access_log  /home/wwwlogs/example.com.log;
+    }
+```
+
+
+
+
