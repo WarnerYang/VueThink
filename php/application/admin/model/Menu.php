@@ -91,7 +91,7 @@ class Menu extends Common
         //处理成树状
         $tree = new \com\Tree();
         $menusList = $tree->list_to_tree($menusList, 'id', 'pid', 'child', 0, true, array('pid'));
-        $menusList = memuLevelClear($menusList);
+        // $menusList = memuLevelClear($menusList);
         
         return $menusList? $menusList: [];
     }
