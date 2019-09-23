@@ -88,7 +88,8 @@ class Base extends Common
         if (Request::instance()->isOptions()) {
             return ;
         } else {
-            echo 'vuethink接口';
+            echo '没有匹配到路由规则';
+            die;
         }
     }
 }
