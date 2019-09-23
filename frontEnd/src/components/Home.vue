@@ -1,6 +1,6 @@
 <template>
-  <el-container>
-    <el-aside width="200px">
+  <el-container class="home-container">
+    <el-aside class="home-left">
       <el-col class="sys-title">
         <template v-if="logo_type == '1'">
           <img :src="img" class="logo" />
@@ -18,8 +18,8 @@
       ></leftMenu>
     </el-aside>
 
-    <el-container>
-      <el-header class="header">
+    <el-container class="home-right">
+      <el-header class="home-header">
         <el-col :span="20">
           <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -30,9 +30,9 @@
             <el-breadcrumb-item>活动详情</el-breadcrumb-item>
           </el-breadcrumb>
         </el-col>
-        <el-col :span="4" class="pos-rel2">
+        <el-col :span="4" class="user">
           <el-dropdown trigger="click" @command="handleMenu" class="user-menu2">
-            <span class="el-dropdown-link c-gra" style="cursor: pointer">
+            <span class="el-dropdown-link" style="cursor: pointer">
               {{username}}
               <i class="el-icon-arrow-down" aria-hidden="true"></i>
             </span>
@@ -45,7 +45,7 @@
         </el-col>
       </el-header>
 
-      <el-main class="main">
+      <el-main class="home-main">
         <section class="panel-c-c2" :class="{'hide-leftMenu': hasChildMenu}">
           <div class="grid-content bg-purple-light">
             <el-col :span="24">
@@ -56,50 +56,8 @@
           </div>
         </section>
       </el-main>
-
-      <el-footer class="footer">Footer</el-footer>
     </el-container>
   </el-container>
-  <!-- <el-row class="panel">
-    <el-col :span="24" class="panel-top">
-      <el-col :span="4">
-        <template v-if="logo_type == '1'">
-          <img :src="img" class="logo" />
-        </template>
-        <template v-else>
-          <span class="p-l-20">{{title}}</span>
-        </template>
-      </el-col>
-      <el-col :span="20" class="pos-rel">
-        <el-dropdown trigger="click" @command="handleMenu" class="user-menu">
-          <span class="el-dropdown-link c-gra" style="cursor: pointer">
-            {{username}}
-            <i class="el-icon-arrow-down" aria-hidden="true"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="changePwd">修改密码</el-dropdown-item>
-            <el-dropdown-item command="logout">退出</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </el-col>
-    </el-col>
-    <el-col :span="24" class="panel-center">
-      <aside class v-show="!showLeftMenu">
-        <leftMenu :menuData="menuData" :menu="menu" :topMenu="topMenu" ref="leftMenu"></leftMenu>
-      </aside>
-      <section class="panel-c-c" :class="{'hide-leftMenu': hasChildMenu}">
-        <div class="grid-content bg-purple-light">
-          <el-col :span="24">
-            <transition name="fade" mode="out-in" appear>
-              <router-view v-loading="showLoading"></router-view>
-            </transition>
-          </el-col>
-        </div>
-      </section>
-    </el-col>
-
-    <changePwd ref="changePwd"></changePwd>
-  </el-row>-->
 </template>
 <style>
 .fade-enter-active,
@@ -180,20 +138,38 @@
   background-color: #304156;
   color: #fff;
 }
-.header {
+.home-container {
+  height: 100%;
+}
+.home-left {
+  height: 100%;
+  width: 200px !important;
+  position: fixed;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.home-right {
+  margin-left: 200px;
+  height: 100%;
+}
+.home-right .user {
+  text-align: right;
+  padding-right: 20px;
+}
+.home-header {
   height: 60px;
   background: #fff;
   line-height: 60px;
   border-bottom: 1px solid #d8dce5;
   background-color: #fff;
 }
-.header .el-breadcrumb {
+.home-header .el-breadcrumb {
   line-height: 60px;
 }
-.main {
+.home-main {
   background-color: #f1f2f7;
 }
-.footer {
+.home-footer {
   text-align: center;
   line-height: 30px;
   height: 30px;

@@ -19,11 +19,13 @@ if (strtolower(getenv('CACHE_TYPE')) === 'redis') {
     $cache = [
         // 驱动方式
         'type' => 'redis',
-        // 缓存保存目录
+        // 主机
         'host' => getenv('CACHE_REDIS_HOST'),
+        // 密码
         'password' => getenv('CACHE_REDIS_PASSWORD'),
         // 缓存前缀
         'prefix' => getenv('CACHE_REDIS_PREFIX'),
+        // 选择库
         'select' => getenv('CACHE_REDIS_SELECT'),
     ];
 }
