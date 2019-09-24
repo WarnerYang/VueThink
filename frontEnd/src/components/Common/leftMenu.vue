@@ -1,31 +1,38 @@
 <template>
-  <el-row class="">
+  <el-row>
+    <!-- <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
+      <el-radio-button :label="false">展开</el-radio-button>
+      <el-radio-button :label="true">收起</el-radio-button>
+    </el-radio-group> -->
     <el-col :span="24">
       <el-menu
         :default-active="menu"
         background-color="#304156"
         text-color="#f5f7fa"
         style="border:none;"
+        :collapse="isCollapse"
       >
-        <div v-for="(firstMenu, idx) in topMenu" :key="firstMenu.id">
-          <div v-if="firstMenu.child">
-            <el-submenu :index="idx+filling">
-              <div slot="title">
-                <i :class="firstMenu.icon"></i>
-                {{firstMenu.title}}
-              </div>
-              <div v-for="(item, idx2) in firstMenu.child" :key="idx2">
-                <el-menu-item :index="item.menu" @click="routerChange(item)">{{item.title}}</el-menu-item>
-              </div>
-            </el-submenu>
-          </div>
-          <div v-else>
-            <el-menu-item :index="firstMenu.menu" @click="routerChange(firstMenu)">
+        <template v-for="(firstMenu, key) in topMenu">
+          <el-submenu v-if="firstMenu.child" :index="key+filling" :key="key">
+            <template slot="title">
               <i :class="firstMenu.icon"></i>
-              {{firstMenu.title}}
-            </el-menu-item>
-          </div>
-        </div>
+              <span slot="title">{{firstMenu.title}}</span>
+            </template>
+            <el-menu-item-group>
+              <template v-for="(item, key2) in firstMenu.child">
+                <el-menu-item
+                  :index="item.menu"
+                  :key="key2"
+                  @click="routerChange(item)"
+                >{{item.title}}</el-menu-item>
+              </template>
+            </el-menu-item-group>
+          </el-submenu>
+          <el-menu-item v-else :index="firstMenu.menu" :key="key" @click="routerChange(firstMenu)">
+            <i class="el-icon-setting"></i>
+            <span slot="title">{{firstMenu.title}}</span>
+          </el-menu-item>
+        </template>
       </el-menu>
     </el-col>
   </el-row>
@@ -36,7 +43,8 @@ export default {
   props: ["menuData", "menu", "topMenu"],
   data() {
     return {
-      filling: "0000"
+      filling: "0000",
+      isCollapse: false
     };
   },
   methods: {

@@ -41,14 +41,13 @@
               <el-dropdown-item command="logout">退出</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <changePwd ref="changePwd"></changePwd>
         </el-col>
       </el-header>
 
       <el-main class="home-main">
         <section class="panel-c-c2" :class="{'hide-leftMenu': hasChildMenu}">
           <div class="grid-content bg-purple-light">
-            <el-col :span="24">
+            <el-col :span="24" class="bg-wh content-container">
               <transition name="fade" mode="out-in" appear>
                 <router-view v-loading="showLoading"></router-view>
               </transition>
@@ -56,6 +55,11 @@
           </div>
         </section>
       </el-main>
+      <div>
+
+      <changePwd ref="changePwd"></changePwd>
+      </div>
+
     </el-container>
   </el-container>
 </template>
@@ -145,7 +149,7 @@
   height: 100%;
   width: 200px !important;
   position: fixed;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 .home-right {
@@ -174,6 +178,9 @@
   line-height: 30px;
   height: 30px;
   color: #eee;
+}
+.content-container {
+  padding: 15px;
 }
 </style>
 <script>
