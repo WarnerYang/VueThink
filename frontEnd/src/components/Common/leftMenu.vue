@@ -6,7 +6,7 @@
     </el-radio-group> -->
     <el-col :span="24">
       <el-menu
-        :default-active="menu"
+        :default-active="activeMenu"
         background-color="#304156"
         text-color="#f5f7fa"
         style="border:none;"
@@ -21,15 +21,15 @@
             <el-menu-item-group>
               <template v-for="(item, key2) in firstMenu.child">
                 <el-menu-item
-                  :index="item.menu"
+                  :index="item.url"
                   :key="key2"
                   @click="routerChange(item)"
                 >{{item.title}}</el-menu-item>
               </template>
             </el-menu-item-group>
           </el-submenu>
-          <el-menu-item v-else :index="firstMenu.menu" :key="key" @click="routerChange(firstMenu)">
-            <i class="el-icon-setting"></i>
+          <el-menu-item v-else :index="firstMenu.url" :key="key" @click="routerChange(firstMenu)">
+            <i :class="firstMenu.icon"></i>
             <span slot="title">{{firstMenu.title}}</span>
           </el-menu-item>
         </template>
@@ -40,7 +40,7 @@
 
 <script>
 export default {
-  props: ["menuData", "menu", "topMenu"],
+  props: ["menuData", "menu", "topMenu", "activeMenu"],
   data() {
     return {
       filling: "0000",
@@ -48,7 +48,7 @@ export default {
     };
   },
   methods: {
-    routerChange(item) {
+    routerChange(item) {      
       // 与当前页面路由相等则刷新页面
       if (item.url != this.$route.path) {
         router.push(item.url);

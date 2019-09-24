@@ -14,6 +14,7 @@
         :menuData="menuData"
         :menu="menu"
         :topMenu="topMenu"
+        :activeMenu="activeMenu"
         ref="leftMenu"
       ></leftMenu>
     </el-aside>
@@ -45,21 +46,16 @@
       </el-header>
 
       <el-main class="home-main">
-        <section class="panel-c-c2" :class="{'hide-leftMenu': hasChildMenu}">
-          <div class="grid-content bg-purple-light">
-            <el-col :span="24" class="bg-wh content-container">
-              <transition name="fade" mode="out-in" appear>
-                <router-view v-loading="showLoading"></router-view>
-              </transition>
-            </el-col>
-          </div>
+        <section :class="{'hide-leftMenu': hasChildMenu}">
+          <el-col :span="24" class="bg-wh content-container">
+            <transition name="fade" mode="out-in" appear>
+              <router-view v-loading="showLoading"></router-view>
+            </transition>
+          </el-col>
         </section>
       </el-main>
-      <div>
 
       <changePwd ref="changePwd"></changePwd>
-      </div>
-
     </el-container>
   </el-container>
 </template>
@@ -200,7 +196,8 @@ export default {
       module: null,
       img: "",
       title: "",
-      logo_type: null
+      logo_type: null,
+      active:null
     };
   },
   methods: {
@@ -281,17 +278,18 @@ export default {
     }
     this.getUsername();
     let menus = Lockr.get("menus");
-    this.menu = this.$route.meta.menu;
-    this.module = this.$route.meta.module;
+    // this.menu = this.$route.meta.menu;
+    // this.module = this.$route.meta.module;
+    this.activeMenu = this.$route.meta.activeMenu;
     this.topMenu = menus;
-    _(menus).forEach(res => {
-      if (res.module == this.module) {
-        this.menuData = res.child;
-        res.selected = true;
-      } else {
-        res.selected = false;
-      }
-    });
+    // _(menus).forEach(res => {
+    //   if (res.module == this.module) {
+    //     this.menuData = res.child;
+    //     res.selected = true;
+    //   } else {
+    //     res.selected = false;
+    //   }
+    // });
   },
   computed: {
     routerShow() {
