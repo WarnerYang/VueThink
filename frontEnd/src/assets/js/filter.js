@@ -9,6 +9,15 @@ export default (function () {
       return '未知状态'
     }
   })
+  Vue.filter('tagType', function (value) {
+    if (value == 1) {
+      return 'success'
+    } else if (value == 0) {
+      return 'info'
+    } else {
+      return ''
+    }
+  })
   Vue.filter('rules', function (value) {
     return value
   })

@@ -10,11 +10,7 @@
       <el-table-column prop="p_title" label="上级菜单" width="150"></el-table-column>
       <el-table-column prop="title" label="标题"></el-table-column>
       <el-table-column prop="menu_type" label="类型" width="200"></el-table-column>
-      <el-table-column label="状态" prop="status" width="100">
-        <template scope="scope">
-          <div>{{ scope.row.status | status }}</div>
-        </template>
-      </el-table-column>
+      <listStatus></listStatus>
       <el-table-column label="操作" width="200">
         <template scope="scope">
           <router-link :to="{ name: 'menuEdit', params: { id: scope.row.id }}" class="p-r-10">
@@ -32,6 +28,7 @@
 
 <script>
 import btnGroup from "../../../Common/btn-group.vue";
+import listStatus from "../../../Common/listStatus.vue";
 import http from "../../../../assets/js/http";
 
 export default {
@@ -87,7 +84,8 @@ export default {
     }
   },
   components: {
-    btnGroup
+    btnGroup,
+    listStatus
   },
   mixins: [http]
 };

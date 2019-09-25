@@ -64,19 +64,16 @@
 .fade-leave-active {
   transition: opacity 0.5s;
 }
-
 .fade-enter,
 .fade-leave-active {
   opacity: 0;
 }
-
 .panel {
   position: absolute;
   top: 0px;
   bottom: 0px;
   width: 100%;
 }
-
 .panel-top {
   height: 60px;
   line-height: 60px;
@@ -84,7 +81,6 @@
   color: #c0ccda;
   border-bottom: 1px solid #1f2d3d;
 }
-
 .panel-center {
   background: #324057;
   position: absolute;
@@ -92,7 +88,6 @@
   bottom: 0px;
   overflow: hidden;
 }
-
 .panel-c-c {
   background: #f1f2f7;
   position: absolute;
@@ -103,7 +98,6 @@
   overflow-y: scroll;
   padding: 20px;
 }
-
 .logout {
   background: url(../assets/images/logout_36.png);
   background-size: contain;
@@ -111,13 +105,10 @@
   height: 20px;
   float: left;
 }
-
 .logo {
-  width: 150px;
-  float: left;
-  margin: 10px 10px 10px 18px;
+  height: 100%;
+  width: auto;
 }
-
 .tip-logout {
   float: right;
   margin-right: 20px;
@@ -133,10 +124,11 @@
   left: 0px;
 }
 .sys-title {
-  min-height: 60px;
+  height: 60px;
   text-align: center;
   background-color: #304156;
   color: #fff;
+  padding: 5px;
 }
 .home-container {
   height: 100%;
@@ -197,7 +189,7 @@ export default {
       img: "",
       title: "",
       logo_type: null,
-      active:null
+      active: null
     };
   },
   methods: {
@@ -257,7 +249,7 @@ export default {
           document.title = data.SYSTEM_NAME;
           this.logo_type = data.LOGO_TYPE;
           this.title = data.SYSTEM_NAME;
-          this.img = window.HOST + data.SYSTEM_LOGO;
+          this.img = data.SYSTEM_LOGO;
         });
       });
     },
