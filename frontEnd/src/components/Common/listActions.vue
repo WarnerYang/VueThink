@@ -12,16 +12,12 @@
 <script>
 import http from "../../assets/js/http";
 export default {
-  props: ["label", "width", "toRouter"],
+  props: ["label", "width", "toRouter", "delApi"],
   methods: {
-    confirmDelete2(item) {
-      this.$emit("callFather", item);
-    },
     confirmDelete(item) {
-      const that = http.methods;
       const title = item.else || item.name || item.title || item.username || "";
       const tips = `确认删除 ${title} ?`;
-      const url = this.getDeletelApiUrl();
+      const url = this.delApi;
       this.$confirm(tips, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -29,35 +25,21 @@ export default {
       })
         .then(() => {
           _g.openGlobalLoading();
-          that.apiDelete(url, item.id).then(res => {
+          this.apiDelete(url, item.id).then(res => {
             _g.closeGlobalLoading();
-            that.handelResponse(res, data => {
+            this.handelResponse(res, data => {
               _g.toastMsg("success", "删除成功");
               setTimeout(() => {
-                // console.log(3333333, this.$route);
-                // fullPath
-                let path = this.$route.name + this.$route.fullPath.replace(this.$route.path, "");
-                // console.log(4444444444, path);
-                _g.shallowRefresh(path);
+                _g.shallowRefresh(this.$route.name, this.$route.query);
               }, 1500);
             });
           });
         })
         .catch(e => {
-          console.log(e);
+          console.error(e);
         });
-    },
-    getDeletelApiUrl() {
-      let obj = {
-        menuEdit: "admin/menus/",
-        ruleEdit: "admin/rules/",
-        positionEdit: "admin/posts/",
-        structuresEdit: "admin/structures/",
-        groupsEdit: "admin/groups/",
-        usersEdit: "admin/users/"
-      };
-      return obj[this.toRouter];
     }
-  }
+  },
+  mixins: [http]
 };
 </script>

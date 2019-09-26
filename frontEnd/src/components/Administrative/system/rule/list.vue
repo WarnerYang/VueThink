@@ -11,7 +11,7 @@
       <el-table-column prop="title" label="显示名"></el-table-column>
       <el-table-column prop="name" label="名称" width="200"></el-table-column>
       <listStatus></listStatus>
-      <listActions :toRouter="'ruleEdit'"></listActions>
+      <listActions :toRouter="'ruleEdit'" :delApi="'admin/rules/'"></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
       <btnGroup :selectedData="multipleSelection" :type="'rules'"></btnGroup>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import btnGroup from "../../../Common/btn-group.vue";
+import btnGroup from "../../../Common/btnGroup.vue";
 import listStatus from "../../../Common/listStatus.vue";
 import listActions from "../../../Common/listActions.vue";
 import http from "../../../../assets/js/http";

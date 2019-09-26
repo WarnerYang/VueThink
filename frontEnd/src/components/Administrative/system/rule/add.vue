@@ -16,7 +16,7 @@
       </el-form-item>
       <el-form-item label="父节点" prop="pid">
         <el-select v-model="form.pid" placeholder="父节点" class="w-200">
-          <el-option v-for="item in options" :label="item.title" :value="item.id"></el-option>
+          <el-option v-for="item in options" :label="item.title" :value="item.id" :key="item"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -28,69 +28,65 @@
 </template>
 
 <script>
-  import http from '../../../../assets/js/http'
-  import fomrMixin from '../../../../assets/js/form_com'
+import http from "../../../../assets/js/http";
+import fomrMixin from "../../../../assets/js/form_com";
 
-  export default {
-    data() {
-      return {
-        isLoading: false,
-        form: {
-          title: '',
-          name: '',
-          pid: null,
-          level: '1'
-        },
-        options: [{ id: 0, title: '根节点' }],
-        rules: {
-          title: [
-            { required: true, message: '请输入节点名称' }
-          ],
-          name: [
-            { required: true, message: '请输入节点显示名' }
-          ],
-          level: [
-            { required: true, message: '请选择节点类型' }
-          ],
-          pid: [
-            { type: 'number', required: true, message: '请选择父级节点' }
-          ]
-        }
-      }
-    },
-    methods: {
-      add(form) {
-        this.$refs[form].validate((valid) => {
-          if (valid) {
-            this.isLoading = !this.isLoading
-            this.apiPost('admin/rules', this.form).then((res) => {
-              this.handelResponse(res, (data) => {
-                _g.toastMsg('success', '添加成功')
-                setTimeout(() => {
-                  this.goback()
-                }, 1500)
-              }, () => {
-                this.isLoading = !this.isLoading
-              })
-            })
-          }
-        })
+export default {
+  data() {
+    return {
+      isLoading: false,
+      form: {
+        title: "",
+        name: "",
+        pid: null,
+        level: "1"
       },
-      getRules() {
-        this.apiGet('admin/rules').then((res) => {
-          this.handelResponse(res, (data) => {
-            _(data).forEach((ret) => {
-              if (ret.level != 3) {
-                this.options.push(ret)
-              }
-            })
-          })
-        })
+      options: [{ id: 0, title: "根节点" }],
+      rules: {
+        title: [{ required: true, message: "请输入节点名称" }],
+        name: [{ required: true, message: "请输入节点显示名" }],
+        level: [{ required: true, message: "请选择节点类型" }],
+        pid: [{ type: "number", required: true, message: "请选择父级节点" }]
       }
+    };
+  },
+  methods: {
+    add(form) {
+      this.$refs[form].validate(valid => {
+        if (valid) {
+          this.isLoading = !this.isLoading;
+          this.apiPost("admin/rules", this.form).then(res => {
+            this.handelResponse(
+              res,
+              data => {
+                _g.toastMsg("success", "添加成功");
+                setTimeout(() => {
+                  this.goback();
+                }, 1500);
+              },
+              () => {
+                this.isLoading = !this.isLoading;
+              }
+            );
+          });
+        }
+      });
     },
-    created() {
-      this.getRules()
-    },
-    mixins: [http, fomrMixin]
-  }
+    getRules() {
+      this.apiGet("admin/rules").then(res => {
+        this.handelResponse(res, data => {
+          _(data).forEach(ret => {
+            if (ret.level != 3) {
+              this.options.push(ret);
+            }
+          });
+        });
+      });
+    }
+  },
+  created() {
+    this.getRules();
+  },
+  mixins: [http, fomrMixin]
+};
 </script>

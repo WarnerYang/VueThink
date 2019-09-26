@@ -10,7 +10,7 @@
 	color: #20a0ff;
 	background-color: #48576a;
 }
-.top-menu, .left-menu {
+/* .top-menu, .left-menu {
 	user-select:none;
 	-webkit-user-select:none;
 	-moz-user-select:none;
@@ -19,6 +19,10 @@
 }
 .left-menu:hover {
 	background: #42566C;
+} */
+.left-menu .el-menu-item i,
+.left-menu .el-submenu__title i {
+  color: rgb(191, 203, 217);
 }
 .pages {
 	position: absolute;

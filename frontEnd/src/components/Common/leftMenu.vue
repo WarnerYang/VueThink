@@ -1,14 +1,14 @@
 <template>
-  <el-row>
+  <el-row class="left-menu">
     <!-- <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
       <el-radio-button :label="false">展开</el-radio-button>
       <el-radio-button :label="true">收起</el-radio-button>
-    </el-radio-group> -->
+    </el-radio-group>-->
     <el-col :span="24">
       <el-menu
         :default-active="activeMenu"
         background-color="#304156"
-        text-color="#f5f7fa"
+        text-color="rgb(191, 203, 217)"
         style="border:none;"
         :collapse="isCollapse"
       >
@@ -48,7 +48,7 @@ export default {
     };
   },
   methods: {
-    routerChange(item) {      
+    routerChange(item) {
       // 与当前页面路由相等则刷新页面
       if (item.url != this.$route.path) {
         router.push(item.url);

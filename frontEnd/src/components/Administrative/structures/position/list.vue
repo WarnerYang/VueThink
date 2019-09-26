@@ -10,7 +10,7 @@
       <el-table-column label="岗位名称" prop="name"></el-table-column>
       <el-table-column label="备注" prop="remark"></el-table-column>
       <listStatus></listStatus>
-      <listActions :toRouter="'positionEdit'"></listActions>
+      <listActions :toRouter="'positionEdit'" :delApi="'admin/posts/'"></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
       <btnGroup :selectedData="multipleSelection" :type="'posts'"></btnGroup>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import btnGroup from "../../../Common/btn-group.vue";
+import btnGroup from "../../../Common/btnGroup.vue";
 import listStatus from "../../../Common/listStatus.vue";
 import listActions from "../../../Common/listActions.vue";
 import http from "../../../../assets/js/http";

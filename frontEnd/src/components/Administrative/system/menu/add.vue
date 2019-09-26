@@ -28,7 +28,7 @@
       </el-form-item>
       <el-form-item label="所属菜单">
         <el-input v-model.trim="form.menu" class="h-40 w-200"></el-input>
-      </el-form-item> -->
+      </el-form-item>-->
       <el-form-item label="排序">
         <el-input v-model="form.sort" class="h-40 w-200"></el-input>
       </el-form-item>

@@ -11,7 +11,7 @@
       <el-table-column prop="title" label="标题"></el-table-column>
       <el-table-column prop="menu_type" label="类型" width="200"></el-table-column>
       <listStatus></listStatus>
-      <listActions :toRouter="'menuEdit'"></listActions>
+      <listActions :toRouter="'menuEdit'" :delApi="'admin/menus/'"></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
       <btnGroup :selectedData="multipleSelection" :type="'menus'"></btnGroup>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import btnGroup from "../../../Common/btn-group.vue";
+import btnGroup from "../../../Common/btnGroup.vue";
 import listStatus from "../../../Common/listStatus.vue";
 import listActions from "../../../Common/listActions.vue";
 import http from "../../../../assets/js/http";

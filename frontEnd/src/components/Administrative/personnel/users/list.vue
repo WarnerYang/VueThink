@@ -18,7 +18,7 @@
       <el-table-column label="用户名" prop="username" width="200"></el-table-column>
       <el-table-column label="备注" prop="remark" width="200"></el-table-column>
       <listStatus></listStatus>
-      <listActions :toRouter="'usersEdit'"></listActions>
+      <listActions :toRouter="'usersEdit'" :delApi="'admin/users/'"></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
       <btnGroup :selectedData="multipleSelection" :type="'users'"></btnGroup>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import btnGroup from "../../../Common/btn-group.vue";
+import btnGroup from "../../../Common/btnGroup.vue";
 import listStatus from "../../../Common/listStatus.vue";
 import listActions from "../../../Common/listActions.vue";
 import http from "../../../../assets/js/http";
