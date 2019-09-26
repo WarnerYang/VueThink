@@ -3,6 +3,7 @@ const commonFn = {
     return JSON.stringify(obj)
   },
   shallowRefresh(name) {
+    console.log(111111111, name);
     router.replace({ path: '/refresh', query: { name: name }})
   },
   closeGlobalLoading() {

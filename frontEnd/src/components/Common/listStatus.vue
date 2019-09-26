@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import Vue from "vue";
 export default {
   props: ["label", "prop", "width"]
 };

@@ -13,7 +13,7 @@ export default (function () {
     if (value == 1) {
       return 'success'
     } else if (value == 0) {
-      return 'info'
+      return 'danger'
     } else {
       return ''
     }
@@ -30,7 +30,7 @@ export default (function () {
     if (value == 1) {
       type = '系统工具'
     } else if (value == 2) {
-      type = '说明知道'
+      type = '说明指导'
     }
     return type
   })

@@ -10,19 +10,8 @@
       <el-table-column prop="p_title" label="节点结构" width="150"></el-table-column>
       <el-table-column prop="title" label="显示名"></el-table-column>
       <el-table-column prop="name" label="名称" width="200"></el-table-column>
-      <el-table-column label="状态" prop="status" width="100">
-        <template scope="scope">
-          <div>{{ scope.row.status | status }}</div>
-        </template>
-      </el-table-column>
-      <el-table-column label="操作" width="200">
-        <template scope="scope">
-          <router-link :to="{ name: 'ruleEdit', params: { id: scope.row.id }}" class="p-r-10">
-            <el-link type="primary" icon="el-icon-edit">编辑</el-link>
-          </router-link>
-          <el-link type="danger" icon="el-icon-delete" @click="confirmDelete(scope.row)">删除</el-link>
-        </template>
-      </el-table-column>
+      <listStatus></listStatus>
+      <listActions :toRouter="'ruleEdit'"></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
       <btnGroup :selectedData="multipleSelection" :type="'rules'"></btnGroup>
@@ -32,6 +21,8 @@
 
 <script>
 import btnGroup from "../../../Common/btn-group.vue";
+import listStatus from "../../../Common/listStatus.vue";
+import listActions from "../../../Common/listActions.vue";
 import http from "../../../../assets/js/http";
 
 export default {
@@ -44,28 +35,6 @@ export default {
   methods: {
     selectItem(val) {
       this.multipleSelection = val;
-    },
-    confirmDelete(item) {
-      this.$confirm("确认删除该权限?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
-      })
-        .then(() => {
-          _g.openGlobalLoading();
-          this.apiDelete("admin/rules/", item.id).then(res => {
-            _g.closeGlobalLoading();
-            this.handelResponse(res, data => {
-              _g.toastMsg("success", "删除成功");
-              setTimeout(() => {
-                _g.shallowRefresh(this.$route.name);
-              }, 1500);
-            });
-          });
-        })
-        .catch(() => {
-          // handle error
-        });
     }
   },
   created() {
@@ -87,7 +56,9 @@ export default {
     }
   },
   components: {
-    btnGroup
+    btnGroup,
+    listStatus,
+    listActions
   },
   mixins: [http]
 };
