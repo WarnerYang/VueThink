@@ -18,7 +18,7 @@
       <el-table-column label="用户名" prop="username" width="200"></el-table-column>
       <el-table-column label="备注" prop="remark" width="200"></el-table-column>
       <listStatus></listStatus>
-      <listActions :toRouter="'usersEdit'" :delApi="'admin/users/'"></listActions>
+      <listActions :toRouter="'usersEdit'" :deleteUrl="'admin/users/'"></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
       <btnGroup :selectedData="multipleSelection" :type="'users'"></btnGroup>

@@ -12,12 +12,12 @@
 <script>
 import http from "../../assets/js/http";
 export default {
-  props: ["label", "width", "toRouter", "delApi"],
+  props: ["label", "width", "toRouter", "deleteUrl"],
   methods: {
     confirmDelete(item) {
       const title = item.else || item.name || item.title || item.username || "";
       const tips = `确认删除 ${title} ?`;
-      const url = this.delApi;
+      const url = this.deleteUrl;
       this.$confirm(tips, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",

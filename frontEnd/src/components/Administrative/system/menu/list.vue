@@ -11,7 +11,7 @@
       <el-table-column prop="title" label="标题"></el-table-column>
       <el-table-column prop="menu_type" label="类型" width="200"></el-table-column>
       <listStatus></listStatus>
-      <listActions :toRouter="'menuEdit'" :delApi="'admin/menus/'"></listActions>
+      <listActions :toRouter="'menuEdit'" :deleteUrl="'admin/menus/'"></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
       <btnGroup :selectedData="multipleSelection" :type="'menus'"></btnGroup>

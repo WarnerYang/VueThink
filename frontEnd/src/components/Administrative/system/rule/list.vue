@@ -11,7 +11,7 @@
       <el-table-column prop="title" label="显示名"></el-table-column>
       <el-table-column prop="name" label="名称" width="200"></el-table-column>
       <listStatus></listStatus>
-      <listActions :toRouter="'ruleEdit'" :delApi="'admin/rules/'"></listActions>
+      <listActions :toRouter="'ruleEdit'" :deleteUrl="'admin/rules/'"></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
       <btnGroup :selectedData="multipleSelection" :type="'rules'"></btnGroup>

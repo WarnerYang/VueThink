@@ -10,7 +10,7 @@
       <el-table-column label="岗位名称" prop="name"></el-table-column>
       <el-table-column label="备注" prop="remark"></el-table-column>
       <listStatus></listStatus>
-      <listActions :toRouter="'positionEdit'" :delApi="'admin/posts/'"></listActions>
+      <listActions :toRouter="'positionEdit'" :deleteUrl="'admin/posts/'"></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
       <btnGroup :selectedData="multipleSelection" :type="'posts'"></btnGroup>

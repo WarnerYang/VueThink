@@ -10,7 +10,7 @@
       <el-table-column label="部门结构" prop="title"></el-table-column>
       <el-table-column label="部门名称" prop="name"></el-table-column>
       <listStatus></listStatus>
-      <listActions :toRouter="'structuresEdit'" :delApi="'admin/structures/'"></listActions>
+      <listActions :toRouter="'structuresEdit'" :deleteUrl="'admin/structures/'"></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
       <btnGroup :selectedData="multipleSelection" :type="'structures'"></btnGroup>

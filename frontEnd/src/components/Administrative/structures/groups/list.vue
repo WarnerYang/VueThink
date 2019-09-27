@@ -10,7 +10,7 @@
       <el-table-column label="组名" prop="title"></el-table-column>
       <el-table-column label="描述" prop="remark"></el-table-column>
       <listStatus></listStatus>
-      <listActions :toRouter="'groupsEdit'" :delApi="'admin/groups/'"></listActions>
+      <listActions :toRouter="'groupsEdit'" :deleteUrl="'admin/groups/'"></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
       <btnGroup :selectedData="multipleSelection" :type="'groups'"></btnGroup>
