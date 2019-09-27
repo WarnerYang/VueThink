@@ -59,118 +59,7 @@
     </el-container>
   </el-container>
 </template>
-<style>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter,
-.fade-leave-active {
-  opacity: 0;
-}
-.panel {
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  width: 100%;
-}
-.panel-top {
-  height: 60px;
-  line-height: 60px;
-  background: #324057;
-  color: #c0ccda;
-  border-bottom: 1px solid #1f2d3d;
-}
-.panel-center {
-  background: #324057;
-  position: absolute;
-  top: 60px;
-  bottom: 0px;
-  overflow: hidden;
-}
-.panel-c-c {
-  background: #f1f2f7;
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  bottom: 0px;
-  left: 180px;
-  overflow-y: scroll;
-  padding: 20px;
-}
-.logout {
-  background: url(../assets/images/logout_36.png);
-  background-size: contain;
-  width: 20px;
-  height: 20px;
-  float: left;
-}
-.logo {
-  height: 100%;
-  width: auto;
-}
-.tip-logout {
-  float: right;
-  margin-right: 20px;
-  padding-top: 5px;
-  cursor: pointer;
-}
 
-.admin {
-  color: #c0ccda;
-  text-align: center;
-}
-.hide-leftMenu {
-  left: 0px;
-}
-.sys-title {
-  height: 60px;
-  text-align: center;
-  background-color: #304156;
-  color: #fff;
-  padding: 5px;
-}
-.home-container {
-  height: 100%;
-}
-.home-left {
-  height: 100%;
-  width: 200px !important;
-  position: fixed;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-.home-right {
-  margin-left: 200px;
-  height: 100%;
-}
-.home-right .user {
-  text-align: right;
-  padding-right: 20px;
-}
-.home-header {
-  height: 60px;
-  background: #fff;
-  line-height: 60px;
-  border-bottom: 1px solid #d8dce5;
-  background-color: #fff;
-}
-.home-header .el-breadcrumb {
-  line-height: 60px;
-}
-.home-main {
-  background-color: #f1f2f7;
-}
-.home-footer {
-  text-align: center;
-  line-height: 30px;
-  height: 30px;
-  color: #eee;
-}
-.content-container {
-  padding: 15px;
-}
-</style>
 <script>
 import leftMenu from "./Common/leftMenu.vue";
 import changePwd from "./Account/changePwd.vue";
@@ -196,7 +85,8 @@ export default {
     logout() {
       this.$confirm("确认退出吗?", "提示", {
         confirmButtonText: "确定",
-        cancelButtonText: "取消"
+        cancelButtonText: "取消",
+        type: "warning"
       })
         .then(() => {
           _g.openGlobalLoading();
@@ -223,13 +113,13 @@ export default {
         })
         .catch(() => {});
     },
-    switchTopMenu(item) {
-      if (!item.child) {
-        router.push(item.url);
-      } else {
-        router.push(item.child[0].child[0].url);
-      }
-    },
+    // switchTopMenu(item) {
+    //   if (!item.child) {
+    //     router.push(item.url);
+    //   } else {
+    //     router.push(item.child[0].child[0].url);
+    //   }
+    // },
     handleMenu(val) {
       switch (val) {
         case "logout":
@@ -284,32 +174,32 @@ export default {
     // });
   },
   computed: {
-    routerShow() {
-      return store.state.routerShow;
-    },
-    showLeftMenu() {
-      this.hasChildMenu = store.state.showLeftMenu;
-      return store.state.showLeftMenu;
-    }
+    // routerShow() {
+    //   return store.state.routerShow;
+    // },
+    // showLeftMenu() {
+    //   this.hasChildMenu = store.state.showLeftMenu;
+    //   return store.state.showLeftMenu;
+    // }
   },
   components: {
     leftMenu,
     changePwd
   },
   watch: {
-    $route(to, from) {
-      _(this.topMenu).forEach(res => {
-        if (res.module == to.meta.module) {
-          res.selected = true;
-          if (!to.meta.hideLeft) {
-            this.menu = to.meta.menu;
-            this.menuData = res.child;
-          }
-        } else {
-          res.selected = false;
-        }
-      });
-    }
+    // $route(to, from) {
+    //   _(this.topMenu).forEach(res => {
+    //     if (res.module == to.meta.module) {
+    //       res.selected = true;
+    //       if (!to.meta.hideLeft) {
+    //         this.menu = to.meta.menu;
+    //         this.menuData = res.child;
+    //       }
+    //     } else {
+    //       res.selected = false;
+    //     }
+    //   });
+    // }
   },
   mixins: [http]
 };

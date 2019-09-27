@@ -16,7 +16,7 @@
       </el-form-item>
       <el-form-item label="父节点" prop="pid">
         <el-select v-model="form.pid" placeholder="父节点" class="w-200">
-          <el-option v-for="item in options" :label="item.title" :value="item.id" :key="item"></el-option>
+          <el-option v-for="item in options" :label="item.title" :value="item.id" :key="item.null"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item>

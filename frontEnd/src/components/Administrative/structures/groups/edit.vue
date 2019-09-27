@@ -6,7 +6,7 @@
       </el-form-item>
       <el-form-item label="父级用户组" prop="pid">
         <el-select v-model="form.pid" placeholder="父级用户组" class="w-200">
-          <el-option v-for="item in options" :label="item.title" :value="item.id" :key="item"></el-option>
+          <el-option v-for="item in options" :label="item.title" :value="item.id" :key="item.null"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="备注">
@@ -14,11 +14,11 @@
       </el-form-item>
       <el-form-item label="权限分配">
         <div class="bor-gray h-400 ovf-y-auto bor-ra-5 bg-wh">
-          <div v-for="item in nodes" :key="item">
+          <div v-for="item in nodes" :key="item.null">
             <div class="bor-b-ccc bg-gra p-l-10 p-r-10">
               <el-checkbox v-model="item.check" @change="selectProjectRule(item)">{{item.else}}</el-checkbox>
             </div>
-            <div v-for="childItem in item.child" :key="childItem">
+            <div v-for="childItem in item.child" :key="childItem.null">
               <div class="p-l-20 bor-b-ccc">
                 <el-checkbox
                   v-model="childItem.check"
@@ -30,7 +30,7 @@
                   v-for="grandChildItem in childItem.child"
                   v-model="grandChildItem.check"
                   @change="selectActionRule(grandChildItem, childItem, item)"
-                  :key="grandChildItem"
+                  :key="grandChildItem.null"
                 >{{grandChildItem.else}}</el-checkbox>
               </div>
             </div>
