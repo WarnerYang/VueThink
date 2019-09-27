@@ -7,9 +7,12 @@
     </div>
     <el-table :data="tableData" style="width: 100%" @selection-change="selectItem">
       <el-table-column type="selection" :context="_self" width="50"></el-table-column>
-      <el-table-column prop="p_title" label="上级菜单" width="150"></el-table-column>
+      <!-- <el-table-column prop="p_title" label="上级菜单" width="150"></el-table-column> -->
       <el-table-column prop="title" label="标题"></el-table-column>
-      <el-table-column prop="menu_type" label="类型" width="200"></el-table-column>
+      <el-table-column prop="url" label="路径"></el-table-column>
+      <el-table-column prop="menu_type" label="类型">
+        <template scope="scope">{{scope.row.menu_type | menuType}}</template>
+      </el-table-column>
       <listStatus></listStatus>
       <listActions :toRouter="'menuEdit'" :deleteUrl="'admin/menus/'"></listActions>
     </el-table>

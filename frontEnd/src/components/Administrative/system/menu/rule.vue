@@ -1,7 +1,12 @@
 <template>
-  <el-dialog ref="dialog" custom-class="w-900 h-480 ovf-auto" title="节点列表">
-    <div class="pos-rel h-60">
-      <el-input placeholder="请输入内容" v-model="keyword" class="search-btn w-300">
+  <el-dialog
+    ref="dialog"
+    custom-class="ovf-auto right-popover"
+    title="节点列表"
+    :visible.sync="dialogVisible"
+  >
+    <div class="pos-rel h-60 tx-r">
+      <el-input placeholder="请输入内容" v-model="keyword" class="w-300" :clearable="true">
         <el-button slot="append" icon="el-icon-search" @click="searchMsg()"></el-button>
       </el-input>
     </div>
@@ -19,13 +24,6 @@
     </div>
   </el-dialog>
 </template>
-<style>
-.search-btn {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-}
-</style>
 <script>
 import http from "../../../../assets/js/http";
 
@@ -33,15 +31,16 @@ export default {
   data() {
     return {
       keyword: "",
-      tableData: []
+      tableData: [],
+      dialogVisible: false
     };
   },
   methods: {
     open() {
-      this.$refs.dialog.open();
+      this.dialogVisible = true;
     },
     closeDialog() {
-      this.$refs.dialog.close();
+      this.dialogVisible = false;
     },
     selectRule(item) {
       setTimeout(() => {
