@@ -83,9 +83,9 @@ const routes = [
     path: '/home',
     component: Home,
     children: [
-      { path: 'groups/list', component: groupsList, name: 'groupsList', meta: { activeMenu: '/home/structures/list' } },
-      { path: 'groups/add', component: groupsAdd, name: 'groupsAdd', meta: { activeMenu: '/home/structures/list' } },
-      { path: 'groups/edit/:id', component: groupsEdit, name: 'groupsEdit', meta: { activeMenu: '/home/structures/list' } }
+      { path: 'groups/list', component: groupsList, name: 'groupsList', meta: { activeMenu: '/home/groups/list' } },
+      { path: 'groups/add', component: groupsAdd, name: 'groupsAdd', meta: { activeMenu: '/home/groups/list' } },
+      { path: 'groups/edit/:id', component: groupsEdit, name: 'groupsEdit', meta: { activeMenu: '/home/groups/list' } }
     ]
   },
   {
