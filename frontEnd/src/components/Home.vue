@@ -9,14 +9,7 @@
           <h3>{{title}}</h3>
         </template>
       </el-col>
-      <leftMenu
-        v-show="!showLeftMenu"
-        :menuData="menuData"
-        :menu="menu"
-        :topMenu="topMenu"
-        :activeMenu="activeMenu"
-        ref="leftMenu"
-      ></leftMenu>
+      <leftMenu :menuData="menuData" :activeMenu="activeMenu" ref="leftMenu"></leftMenu>
     </el-aside>
 
     <el-container class="home-right">
@@ -159,19 +152,8 @@ export default {
       return;
     }
     this.getUsername();
-    let menus = Lockr.get("menus");
-    // this.menu = this.$route.meta.menu;
-    // this.module = this.$route.meta.module;
     this.activeMenu = this.$route.meta.activeMenu;
-    this.topMenu = menus;
-    // _(menus).forEach(res => {
-    //   if (res.module == this.module) {
-    //     this.menuData = res.child;
-    //     res.selected = true;
-    //   } else {
-    //     res.selected = false;
-    //   }
-    // });
+    this.menuData = Lockr.get("menus");
   },
   computed: {
     // routerShow() {
@@ -187,19 +169,9 @@ export default {
     changePwd
   },
   watch: {
-    // $route(to, from) {
-    //   _(this.topMenu).forEach(res => {
-    //     if (res.module == to.meta.module) {
-    //       res.selected = true;
-    //       if (!to.meta.hideLeft) {
-    //         this.menu = to.meta.menu;
-    //         this.menuData = res.child;
-    //       }
-    //     } else {
-    //       res.selected = false;
-    //     }
-    //   });
-    // }
+    $route(to, from) {
+      this.activeMenu = to.meta.activeMenu;
+    }
   },
   mixins: [http]
 };

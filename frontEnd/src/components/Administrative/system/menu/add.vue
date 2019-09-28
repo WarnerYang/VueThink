@@ -12,7 +12,6 @@
         <el-radio-group v-model="form.menu_type">
           <el-radio label="1">{{1 | menuType}}</el-radio>
           <el-radio label="2">{{2 | menuType}}</el-radio>
-          <el-radio label="3">{{3 | menuType}}</el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item label="上级菜单" prop="pid">
@@ -105,9 +104,7 @@ export default {
       this.handelResponse(res, data => {
         let array = [];
         _(data).forEach(ret => {
-          if (ret.level != 3 && ret.menu_type == 1) {
-            array.push(ret);
-          }
+          array.push(ret);
         });
         this.options = this.options.concat(array);
       });

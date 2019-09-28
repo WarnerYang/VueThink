@@ -10,13 +10,12 @@
       </el-form-item>
       <el-form-item label="菜单类型" prop="menu_type">
         <el-radio-group v-model="form.menu_type">
-          <el-radio disabled label="1">普通三级菜单</el-radio>
-          <el-radio disabled label="2">单页菜单</el-radio>
-          <el-radio disabled label="3">外链</el-radio>
+          <el-radio label="1">{{1 | menuType}}</el-radio>
+          <el-radio label="2">{{2 | menuType}}</el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item label="上级菜单" prop="pid">
-        <el-select disabled v-model="form.pid" placeholder="请选择活动区域" class="w-200">
+        <el-select v-model="form.pid" placeholder="请选择活动区域" class="w-200">
           <el-option v-for="item in options" :label="item.title" :value="item.id" :key="item.null"></el-option>
         </el-select>
       </el-form-item>
@@ -105,9 +104,7 @@ export default {
         this.handelResponse(res, data => {
           let array = [];
           _(data).forEach(res => {
-            if (res.level != 3 && res.menu_type == 1) {
-              array.push(res);
-            }
+            array.push(res);
           });
           this.options = this.options.concat(array);
         });
