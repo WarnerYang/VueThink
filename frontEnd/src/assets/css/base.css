@@ -303,13 +303,11 @@ body {
 }
 .home-left {
   height: 100%;
-  width: 200px !important;
-  position: fixed;
+  max-width: 200px !important;
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: hidden; 
 }
 .home-right {
-  margin-left: 200px;
   height: 100%;
 }
 .home-right .user {
