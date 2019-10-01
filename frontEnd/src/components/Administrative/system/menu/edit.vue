@@ -22,6 +22,9 @@
       <el-form-item label="路径">
         <el-input v-model.trim="form.url" class="h-40 w-200"></el-input>
       </el-form-item>
+      <el-form-item label="图标">
+        <el-input v-model.trim="form.icon" class="h-40 w-200"></el-input>
+      </el-form-item>
       <!-- <el-form-item label="模块" prop="module">
         <el-input v-model.trim="form.module" class="h-40 w-200"></el-input>
       </el-form-item>
