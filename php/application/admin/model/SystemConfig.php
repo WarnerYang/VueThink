@@ -9,7 +9,7 @@ namespace app\admin\model;
 
 use think\Model;
 
-class SystemConfig extends Model 
+class SystemConfig extends Model
 {
 
 	/**
@@ -20,10 +20,10 @@ class SystemConfig extends Model
 	{
 		$list = $this->select();
 		$data = array();
-        foreach ($list as $key => $val) {
-            $data[$val['name']] = $val['value'];
-        }
-        return $data;
+		foreach ($list as $key => $val) {
+			$data[$val['name']] = $val['value'];
+		}
+		return $data;
 	}
 
 	/**
@@ -33,11 +33,11 @@ class SystemConfig extends Model
 	public function createData($param)
 	{
 		$list = [
-		    ['id' => 1, 'value' => $param['SYSTEM_NAME']],
-		    ['id' => 2, 'value' => $param['SYSTEM_LOGO']],
-		    ['id' => 3, 'value' => $param['LOGIN_SESSION_VALID']],
-		    ['id' => 4, 'value' => $param['IDENTIFYING_CODE']],	
-		    ['id' => 5, 'value' => $param['LOGO_TYPE']],			
+			['id' => 1, 'value' => $param['SYSTEM_NAME']],
+			['id' => 2, 'value' => $param['SYSTEM_LOGO']],
+			['id' => 3, 'value' => $param['LOGIN_SESSION_VALID']],
+			['id' => 4, 'value' => $param['IDENTIFYING_CODE']],
+			['id' => 5, 'value' => $param['LOGO_TYPE']],
 		];
 		if ($this->saveAll($list)) {
 			$data = $this->getDataList();

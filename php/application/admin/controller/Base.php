@@ -14,22 +14,22 @@ use think\Request;
 class Base extends Common
 {
     public function login()
-    {   
+    {
         $userModel = model('User');
         $param = $this->param;
         $username = $param['username'];
         $password = $param['password'];
-        $verifyCode = !empty($param['verifyCode'])? $param['verifyCode']: '';
-        $isRemember = !empty($param['isRemember'])? $param['isRemember']: '';
+        $verifyCode = !empty($param['verifyCode']) ? $param['verifyCode'] : '';
+        $isRemember = !empty($param['isRemember']) ? $param['isRemember'] : '';
         $data = $userModel->login($username, $password, $verifyCode, $isRemember);
         if (!$data) {
             return resultArray(['error' => $userModel->getError()]);
-        } 
+        }
         return resultArray(['data' => $data]);
     }
 
     public function relogin()
-    {   
+    {
         $userModel = model('User');
         $param = $this->param;
         $data = decrypt($param['rememberKey']);
@@ -39,20 +39,20 @@ class Base extends Common
         $data = $userModel->login($username, $password, '', true, true);
         if (!$data) {
             return resultArray(['error' => $userModel->getError()]);
-        } 
+        }
         return resultArray(['data' => $data]);
-    }    
+    }
 
     public function logout()
     {
         $param = $this->param;
-        cache('Auth_'.$param['authkey'], null);
-        return resultArray(['data'=>'退出成功']);
+        cache('Auth_' . $param['authkey'], null);
+        return resultArray(['data' => '退出成功']);
     }
 
     public function getConfigs()
     {
-        $systemConfig = cache('DB_CONFIG_DATA'); 
+        $systemConfig = cache('DB_CONFIG_DATA');
         if (!$systemConfig) {
             //获取所有系统配置
             $systemConfig = model('admin/SystemConfig')->getDataList();
@@ -78,7 +78,7 @@ class Base extends Common
         $data = $userModel->setInfo($auth_key, $old_pwd, $new_pwd);
         if (!$data) {
             return resultArray(['error' => $userModel->getError()]);
-        } 
+        }
         return resultArray(['data' => $data]);
     }
 
@@ -86,11 +86,10 @@ class Base extends Common
     public function miss()
     {
         if (Request::instance()->isOptions()) {
-            return ;
+            return;
         } else {
             echo '没有匹配到路由规则';
             die;
         }
     }
 }
- 

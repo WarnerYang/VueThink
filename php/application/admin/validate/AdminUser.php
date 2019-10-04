@@ -1,11 +1,14 @@
 <?php
 
 namespace app\admin\validate;
+
 use think\Validate;
+
 /**
-* 设置模型
-*/
-class AdminUser extends Validate{
+ * 设置模型
+ */
+class AdminUser extends Validate
+{
 
 	protected $rule = array(
 		'username'  		=> 'require|length:6,12|unique:user',

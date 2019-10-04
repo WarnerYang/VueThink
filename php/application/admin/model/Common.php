@@ -9,9 +9,9 @@ namespace app\admin\model;
 
 use think\Model;
 
-class Common extends Model 
+class Common extends Model
 {
-	
+
 	/**
 	 * [getDataById 根据主键获取详情]
 	 * @linchuangbin
@@ -38,7 +38,7 @@ class Common extends Model
 	 */
 	public function createData($param)
 	{
-		
+
 		// 验证
 		$validate = validate($this->name);
 		if (!$validate->check($param)) {
@@ -48,7 +48,7 @@ class Common extends Model
 		try {
 			$this->data($param)->allowField(true)->save();
 			return true;
-		} catch(\Exception $e) {
+		} catch (\Exception $e) {
 			$this->error = '添加失败';
 			return false;
 		}
@@ -80,7 +80,7 @@ class Common extends Model
 		try {
 			$this->allowField(true)->save($param, [$this->getPk() => $id]);
 			return true;
-		} catch(\Exception $e) {
+		} catch (\Exception $e) {
 			$this->error = '编辑失败';
 			return false;
 		}
@@ -103,17 +103,17 @@ class Common extends Model
 			if ($delSon && is_numeric($id)) {
 				// 删除子孙
 				$childIds = $this->getAllChild($id);
-				if($childIds){
+				if ($childIds) {
 					$this->where($this->getPk(), 'in', $childIds)->delete();
 				}
 			}
 			$this->commit();
 			return true;
-		} catch(\Exception $e) {
+		} catch (\Exception $e) {
 			$this->error = '删除失败';
 			$this->rollback();
 			return false;
-		}		
+		}
 	}
 
 	/**
@@ -130,7 +130,7 @@ class Common extends Model
 			$this->error = '删除失败';
 			return false;
 		}
-		
+
 		// 查找所有子元素
 		if ($delSon) {
 			foreach ($ids as $k => $v) {
@@ -147,8 +147,7 @@ class Common extends Model
 		} catch (\Exception $e) {
 			$this->error = '操作失败';
 			return false;
-		}		
-
+		}
 	}
 
 	/**
@@ -176,7 +175,7 @@ class Common extends Model
 			$ids = array_unique($ids);
 		}
 		try {
-			$this->where($this->getPk(),'in',$ids)->setField('status', $status);
+			$this->where($this->getPk(), 'in', $ids)->setField('status', $status);
 			return true;
 		} catch (\Exception $e) {
 			$this->error = '操作失败';
@@ -198,6 +197,5 @@ class Common extends Model
 			}
 		}
 		return $data;
-	}		
-
+	}
 }

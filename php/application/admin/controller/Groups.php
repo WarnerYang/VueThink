@@ -9,9 +9,9 @@ namespace app\admin\controller;
 
 class Groups extends ApiCommon
 {
-    
+
     public function index()
-    {   
+    {
         $groupModel = model('Group');
         $param = $this->param;
         $data = $groupModel->getDataList();
@@ -19,13 +19,13 @@ class Groups extends ApiCommon
     }
 
     public function read()
-    {   
+    {
         $groupModel = model('Group');
         $param = $this->param;
         $data = $groupModel->getDataById($param['id']);
         if (!$data) {
             return resultArray(['error' => $groupModel->getError()]);
-        } 
+        }
         return resultArray(['data' => $data]);
     }
 
@@ -36,7 +36,7 @@ class Groups extends ApiCommon
         $data = $groupModel->createData($param);
         if (!$data) {
             return resultArray(['error' => $groupModel->getError()]);
-        } 
+        }
         return resultArray(['data' => '添加成功']);
     }
 
@@ -47,7 +47,7 @@ class Groups extends ApiCommon
         $data = $groupModel->updateDataById($param, $param['id']);
         if (!$data) {
             return resultArray(['error' => $groupModel->getError()]);
-        } 
+        }
         return resultArray(['data' => '编辑成功']);
     }
 
@@ -55,33 +55,32 @@ class Groups extends ApiCommon
     {
         $groupModel = model('Group');
         $param = $this->param;
-        $data = $groupModel->delDataById($param['id'], true);       
+        $data = $groupModel->delDataById($param['id'], true);
         if (!$data) {
             return resultArray(['error' => $groupModel->getError()]);
-        } 
-        return resultArray(['data' => '删除成功']);    
+        }
+        return resultArray(['data' => '删除成功']);
     }
 
     public function deletes()
     {
         $groupModel = model('Group');
         $param = $this->param;
-        $data = $groupModel->delDatas($param['ids'], true);  
+        $data = $groupModel->delDatas($param['ids'], true);
         if (!$data) {
             return resultArray(['error' => $groupModel->getError()]);
-        } 
-        return resultArray(['data' => '删除成功']); 
+        }
+        return resultArray(['data' => '删除成功']);
     }
 
     public function enables()
     {
         $groupModel = model('Group');
         $param = $this->param;
-        $data = $groupModel->enableDatas($param['ids'], $param['status'], true);  
+        $data = $groupModel->enableDatas($param['ids'], $param['status'], true);
         if (!$data) {
             return resultArray(['error' => $groupModel->getError()]);
-        } 
-        return resultArray(['data' => '操作成功']);         
+        }
+        return resultArray(['data' => '操作成功']);
     }
 }
- 

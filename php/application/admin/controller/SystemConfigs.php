@@ -16,8 +16,7 @@ class SystemConfigs extends ApiCommon
         $data = $configModel->createData($param);
         if (!$data) {
             return resultArray(['error' => $configModel->getError()]);
-        } 
-        return resultArray(['data' => '添加成功']);	
+        }
+        return resultArray(['data' => '添加成功']);
     }
 }
- 

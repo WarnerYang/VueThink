@@ -1,11 +1,14 @@
 <?php
 
 namespace app\admin\validate;
+
 use think\Validate;
+
 /**
-* 设置模型
-*/
-class AdminPost extends Validate{
+ * 设置模型
+ */
+class AdminPost extends Validate
+{
 
 	protected $rule = array(
 		'name'   => 'require',

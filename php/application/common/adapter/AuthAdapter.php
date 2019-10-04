@@ -1,6 +1,9 @@
 <?php
+
 namespace app\common\adapter;
+
 use com\HonrayAuth;
+
 class AuthAdapter
 {
 	private static $_instance;
@@ -11,24 +14,24 @@ class AuthAdapter
 	 */
 	private $auth_key;
 
-	public function __construct($auth_key) 
+	public function __construct($auth_key)
 	{
-		$this->auth_key = $auth_key; 
+		$this->auth_key = $auth_key;
 	}
 
 	//实例化权限类
 	public static function getInstance($auth_key)
-	 {
+	{
 		if (!(self::$_instance instanceof HonrayAuth)) {
 			self::$_instance = new HonrayAuth($auth_key);
 		}
-		return self::$_instance; 
+		return self::$_instance;
 	}
 	//登录认证
-	public function checkLogin($names, $uid, $relation='or') 
+	public function checkLogin($names, $uid, $relation = 'or')
 	{
 		self::getInstance($this->auth_key)->_config['AUTH_TYPE'] = 2;
-		if ($uid == 1){ 
+		if ($uid == 1) {
 			return true;
 		}
 		if (!self::getInstance($this->auth_key)->check($names, $uid, $relation)) {
@@ -38,7 +41,7 @@ class AuthAdapter
 		}
 	}
 	//实时认证
-	public function checkIntime($names, $uid, $relation='or') 
+	public function checkIntime($names, $uid, $relation = 'or')
 	{
 		self::getInstance($this->auth_key)->_config['AUTH_TYPE'] = 1;
 		if ($uid == 1) {
@@ -51,7 +54,7 @@ class AuthAdapter
 		}
 	}
 	//更新缓存auth_list
-	public function updateCacheAuth() 
+	public function updateCacheAuth()
 	{
 		$res = self::getInstance($this->auth_key)->updateCacheAuth();
 		return $res;
