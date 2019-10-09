@@ -39,7 +39,7 @@ export default {
       this.drawer = false;
     },
     selectRule(item) {
-      this.$parent.form.rule_name = item.title;
+      this.$parent.form.rule_name = item.else;
       this.$parent.form.rule_id = item.id;
       this.close();
     },
