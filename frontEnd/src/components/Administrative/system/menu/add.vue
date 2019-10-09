@@ -25,12 +25,6 @@
       <el-form-item label="图标">
         <el-input v-model.trim="form.icon" class="h-40 w-200"></el-input>
       </el-form-item>
-      <!-- <el-form-item label="模块" prop="module">
-        <el-input v-model.trim="form.module" class="h-40 w-200"></el-input>
-      </el-form-item>
-      <el-form-item label="所属菜单">
-        <el-input v-model.trim="form.menu" class="h-40 w-200"></el-input>
-      </el-form-item>-->
       <el-form-item label="排序">
         <el-input v-model="form.sort" class="h-40 w-200"></el-input>
       </el-form-item>
@@ -96,7 +90,7 @@ export default {
       });
     },
     openRule() {
-      this.$refs.ruleList.open();
+      this.$refs.ruleList.open(this.form);
     }
   },
   created() {

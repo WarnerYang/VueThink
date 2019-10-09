@@ -374,3 +374,8 @@ body {
 .el-table .success-row {
   background: #f0f9eb;
 } 
+
+.drawer-rtl .el-drawer__body{
+  padding: 20px;
+  overflow-y: auto;
+}

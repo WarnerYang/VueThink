@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <el-collapse-transition>
+      <router-view></router-view>
+    </el-collapse-transition>
   </div>
 </template>
 
