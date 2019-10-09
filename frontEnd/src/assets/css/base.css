@@ -1,41 +1,5 @@
 @import "./font-awesome.min.css";
 
-.bounce-enter-active {
-  animation: bounce-in .5s;
-}
-
-.bounce-leave-active {
-  animation: bounce-out .2s;
-}
-
-.box-shadow-none {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
-}
-
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes bounce-out {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.95);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
-
 body {
   margin: 0px;
   padding: 0px;
@@ -303,13 +267,11 @@ body {
 }
 .home-left {
   height: 100%;
-  width: 200px !important;
-  position: fixed;
+  max-width: 200px !important;
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: hidden; 
 }
 .home-right {
-  margin-left: 200px;
   height: 100%;
 }
 .home-right .user {
@@ -347,25 +309,68 @@ body {
     height: 100% !important;
     max-width: 70%;
 }
-
-@keyframes dialog-fade-in {
-    0% {
-        transform: translate3d(100%, 0, 0);
-        opacity: 0;
-    }
-    100% {
-        transform: translate3d(0, 0, 0);
-        opacity: 1;
-    }
+.box-shadow-none {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
 }
 
-@keyframes dialog-fade-out {
-    0% {
-        transform: translate3d(0, 0, 0);
-        opacity: 1;
-    }
-    100% {
-        transform: translate3d(100%, 0, 0);
-        opacity: 0;
-    }
+.bounce-enter-active {
+  animation: bounce-in .5s;
 }
+
+.bounce-leave-active {
+  animation: bounce-out .2s;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes slide-in {
+  0% {
+      transform: translate3d(100%, 0, 0);
+      opacity: 0;
+  }
+  100% {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+  }
+  100% {
+      transform: translate3d(100%, 0, 0);
+      opacity: 0;
+  }
+}
+
+.el-table .warning-row {
+  background: oldlace;
+}
+
+.el-table .success-row {
+  background: #f0f9eb;
+} 

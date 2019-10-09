@@ -12,7 +12,7 @@
       </el-form-item>
       <el-form-item label="部门" prop="structure_id">
         <el-select v-model="form.structure_id" placeholder="请选择部门" class="w-200">
-          <el-option v-for="item in orgsOptions" :label="item.title" :value="item.id" :key="item.null"></el-option>
+          <el-option v-for="item in orgsOptions" :label="item.title" :value="item.id" :key="item.id"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="备注">
@@ -24,7 +24,7 @@
             v-for="item in groupOptions"
             :label="item.title"
             class="form-checkbox"
-            :key="item.null"
+            :key="item.id"
           ></el-checkbox>
         </el-checkbox-group>
       </el-form-item>

@@ -1,10 +1,5 @@
 <template>
-  <el-dialog
-    ref="dialog"
-    custom-class="w-400 h-300 right-popover"
-    title="修改密码"
-    :visible.sync="dialogVisible"
-  >
+  <el-dialog ref="dialog" custom-class="w-400 h-300" title="修改密码" :visible.sync="dialogVisible">
     <div class="ovf-auto">
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="旧密码" prop="old_pwd">

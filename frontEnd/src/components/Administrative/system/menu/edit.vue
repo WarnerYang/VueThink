@@ -16,11 +16,14 @@
       </el-form-item>
       <el-form-item label="上级菜单" prop="pid">
         <el-select v-model="form.pid" placeholder="请选择活动区域" class="w-200">
-          <el-option v-for="item in options" :label="item.title" :value="item.id" :key="item.null"></el-option>
+          <el-option v-for="item in options" :label="item.title" :value="item.id" :key="item.id"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="路径">
         <el-input v-model.trim="form.url" class="h-40 w-200"></el-input>
+      </el-form-item>
+      <el-form-item label="图标">
+        <el-input v-model.trim="form.icon" class="h-40 w-200"></el-input>
       </el-form-item>
       <!-- <el-form-item label="模块" prop="module">
         <el-input v-model.trim="form.module" class="h-40 w-200"></el-input>

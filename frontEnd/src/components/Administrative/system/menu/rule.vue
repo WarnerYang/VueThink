@@ -5,13 +5,13 @@
     title="节点列表"
     :visible.sync="dialogVisible"
   >
-    <div class="pos-rel h-60 tx-r">
+    <!-- <div class="pos-rel h-60 tx-r">
       <el-input placeholder="请输入内容" v-model="keyword" class="w-300" :clearable="true">
-        <el-button slot="append" icon="el-icon-search" @click="searchMsg()"></el-button>
+        <el-button slot="append" icon="el-icon-search" @click="search()"></el-button>
       </el-input>
-    </div>
+    </div>-->
     <div>
-      <el-table :data="tableData" stripe style="width: 100%">
+      <el-table :data="tableData" stripe>
         <!-- <el-table-column prop="type" label="类型" width="100"></el-table-column> -->
         <el-table-column prop="title" label="规则名称"></el-table-column>
         <el-table-column prop="name" label="规则标识"></el-table-column>
@@ -32,7 +32,8 @@ export default {
     return {
       keyword: "",
       tableData: [],
-      dialogVisible: false
+      dialogVisible: false,
+      rowSearchedArr: []
     };
   },
   methods: {
@@ -48,6 +49,25 @@ export default {
         this.$parent.form.rule_id = item.id;
       }, 0);
       this.closeDialog();
+    },
+    search() {
+      this.rowSearchedArr = [];
+      const data = this.tableData;
+      const keyword = this.keyword;
+      for (const key in data) {
+        let name = data[key].name;
+        let title = data[key].else;
+        if (name.indexOf(keyword) != -1 || title.indexOf(keyword) != -1) {
+          this.rowSearchedArr.push(Number(key));
+        }
+      }
+    },
+    tableRowClassName({ row, rowIndex }) {
+      const arr = this.rowSearchedArr;
+      if (arr.includes(rowIndex)) {
+        return "success-row";
+      }
+      return "";
     },
     getRules() {
       this.apiGet("admin/rules").then(res => {
