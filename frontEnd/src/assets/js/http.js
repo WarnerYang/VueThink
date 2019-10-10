@@ -82,14 +82,14 @@ const apiMethods = {
                 })
               })
             } else {
-              _g.toastMsg('error', res.error)
+              _g.toastMsg('error', res.error || res.message)
               setTimeout(() => {
                 router.replace('/')
               }, 1500)
             }
             break
           case 103:
-            _g.toastMsg('error', res.error)
+            _g.toastMsg('error', res.error || res.message)
             setTimeout(() => {
               router.replace('/')
             }, 1500)
@@ -97,8 +97,8 @@ const apiMethods = {
           // case 400:
           //   this.goback()
           //   break
-          default :
-            _g.toastMsg('error', res.error)
+          default:
+            _g.toastMsg('error', res.error || res.message)
         }
       } else {
         console.log('default error')
