@@ -10,10 +10,10 @@
       <el-table-column label="岗位名称" prop="name"></el-table-column>
       <el-table-column label="备注" prop="remark"></el-table-column>
       <listStatus></listStatus>
-      <listActions :toRouter="'positionEdit'" :deleteUrl="'admin/posts/'"></listActions>
+      <listActions :toRouter="'positionEdit'" :deleteUrl="'admin/posts/'" :isLastData="isLastData"></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
-      <btnGroup :selectedData="multipleSelection" :type="'posts'"></btnGroup>
+      <btnGroup :selectedData="multipleSelection" :type="'posts'" :isLastData="isLastData"></btnGroup>
     </div>
   </div>
 </template>
@@ -28,7 +28,8 @@ export default {
   data() {
     return {
       tableData: [],
-      multipleSelection: []
+      multipleSelection: [],
+      isLastData: false
     };
   },
   methods: {
@@ -55,6 +56,11 @@ export default {
     },
     deleteShow() {
       return _g.getHasRule("posts-delete");
+    }
+  },
+  watch: {
+    tableData(val) {
+      this.isLastData = val.length === 1 ? true : false;
     }
   },
   components: {

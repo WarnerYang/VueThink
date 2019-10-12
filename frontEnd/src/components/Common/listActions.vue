@@ -12,7 +12,7 @@
 <script>
 import http from "../../assets/js/http";
 export default {
-  props: ["label", "width", "toRouter", "deleteUrl"],
+  props: ["label", "width", "toRouter", "deleteUrl", "isLastData"],
   methods: {
     confirmDelete(item) {
       const title = item.else || item.name || item.title || item.username || "";
@@ -29,6 +29,9 @@ export default {
             _g.closeGlobalLoading();
             this.handelResponse(res, data => {
               _g.toastMsg("success", "删除成功");
+              if (this.isLastData && this.$route.query.page) {
+                this.$route.query.page -= 1;
+              }
               setTimeout(() => {
                 _g.shallowRefresh(this.$route.name, this.$route.query);
               }, 500);

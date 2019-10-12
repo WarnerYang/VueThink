@@ -79,21 +79,10 @@ export default {
       return temp;
     },
     add() {
-      // _(this.groupOptions).forEach((res) => {
-      //   console.log(this.selectedGroups.toString().indexOf(res.else))
-      //   if (this.selectedGroups.toString().indexOf(res.else) > -1) {
-      //     this.selectedIds.push(res.id)
-      //   }
-      // })
-      // console.log('groupOptions = ', _g.j2s(this.groupOptions))
-      // console.log('selectedGroups = ', _g.j2s(this.selectedGroups))
-      // console.log('selectedIds = ', _g.j2s(this.selectedIds))
-
       if (!this.selectCheckbox()) {
         _g.toastMsg("warning", "请选择用户组");
         return;
       }
-      console.log("selectedIds = ", _g.j2s(this.selectedIds));
       this.$refs.form.validate(pass => {
         if (pass) {
           this.isLoading = !this.isLoading;
@@ -125,7 +114,6 @@ export default {
           resolve(data);
         } else {
           this.apiGet("admin/groups").then(res => {
-            console.log("groups = ", _g.j2s(res));
             this.handelResponse(res, data => {
               resolve(data);
             });
@@ -144,7 +132,6 @@ export default {
       this.getAllOrgs();
       this.groupOptions = await this.getAllGroups();
       this.apiGet("admin/users/" + this.id).then(res => {
-        console.log("res = ", _g.j2s(res));
         this.handelResponse(res, data => {
           this.form.username = data.username;
           this.form.realname = data.realname;

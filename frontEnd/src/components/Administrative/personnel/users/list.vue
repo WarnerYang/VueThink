@@ -24,10 +24,10 @@
       <el-table-column label="真实姓名" prop="realname"></el-table-column>
       <el-table-column label="备注" prop="remark"></el-table-column>
       <listStatus></listStatus>
-      <listActions :toRouter="'usersEdit'" :deleteUrl="'admin/users/'"></listActions>
+      <listActions :toRouter="'usersEdit'" :deleteUrl="'admin/users/'" :isLastData="isLastData"></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
-      <btnGroup :selectedData="multipleSelection" :type="'users'"></btnGroup>
+      <btnGroup :selectedData="multipleSelection" :type="'users'" :isLastData="isLastData"></btnGroup>
       <div class="block pages">
         <el-pagination
           @current-change="handleCurrentChange"
@@ -55,7 +55,8 @@ export default {
       currentPage: null,
       keywords: "",
       multipleSelection: [],
-      limit: 15
+      limit: 15,
+      isLastData: false
     };
   },
   methods: {
@@ -84,7 +85,6 @@ export default {
         }
       };
       this.apiGet("admin/users", data).then(res => {
-        console.log("res = ", _g.j2s(res));
         this.handelResponse(res, data => {
           this.tableData = data.list;
           this.dataCount = data.dataCount;
@@ -134,6 +134,9 @@ export default {
   watch: {
     $route(to, from) {
       this.init();
+    },
+    tableData(val) {
+      this.isLastData = val.length === 1 ? true : false;
     }
   },
   components: {

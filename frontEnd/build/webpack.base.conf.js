@@ -26,7 +26,7 @@ module.exports = {
     filename: '[name].js'
   },
   eslint: {
-    configFile: './.eslintrc.json'
+    // configFile: './.eslintrc.json'
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -47,18 +47,18 @@ module.exports = {
     fallback: [path.join(__dirname, '../node_modules')]
   },
   module: {
-    preLoaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint'
-      },
-      {
-        test: /\.vue$/,
-        exclude: /node_modules/,
-        loader: 'eslint'
-      }
-    ],
+    // preLoaders: [
+    //   {
+    //     test: /\.js$/,
+    //     exclude: /node_modules/,
+    //     loader: 'eslint'
+    //   },
+    //   {
+    //     test: /\.vue$/,
+    //     exclude: /node_modules/,
+    //     loader: 'eslint'
+    //   }
+    // ],
     loaders: [
       {
         test: /\.vue$/,

@@ -83,7 +83,6 @@ export default {
         _g.toastMsg("warning", "请选择用户组");
         return;
       }
-      console.log("res = ", _g.j2s(this.form));
       this.$refs.form.validate(pass => {
         if (pass) {
           this.isLoading = !this.isLoading;

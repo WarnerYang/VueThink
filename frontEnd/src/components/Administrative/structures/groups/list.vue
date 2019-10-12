@@ -10,10 +10,10 @@
       <el-table-column label="组名" prop="title"></el-table-column>
       <el-table-column label="描述" prop="remark"></el-table-column>
       <listStatus></listStatus>
-      <listActions :toRouter="'groupsEdit'" :deleteUrl="'admin/groups/'"></listActions>
+      <listActions :toRouter="'groupsEdit'" :deleteUrl="'admin/groups/'" :isLastData="isLastData"></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
-      <btnGroup :selectedData="multipleSelection" :type="'groups'"></btnGroup>
+      <btnGroup :selectedData="multipleSelection" :type="'groups'" :isLastData="isLastData"></btnGroup>
     </div>
   </div>
 </template>
@@ -28,7 +28,8 @@ export default {
   data() {
     return {
       tableData: [],
-      multipleSelection: []
+      multipleSelection: [],
+      isLastData: false
     };
   },
   methods: {
@@ -55,6 +56,11 @@ export default {
     },
     deleteShow() {
       return _g.getHasRule("groups-delete");
+    }
+  },
+  watch: {
+    tableData(val) {
+      this.isLastData = val.length === 1 ? true : false;
     }
   },
   components: {

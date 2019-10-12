@@ -10,7 +10,7 @@
 import http from "../../assets/js/http";
 
 export default {
-  props: ["selectedData", "type"],
+  props: ["selectedData", "type", "isLastData"],
   data() {
     return {
       enableLoading: false,
@@ -53,7 +53,7 @@ export default {
           data => {
             _g.toastMsg("success", word + "成功");
             setTimeout(() => {
-              _g.shallowRefresh(this.$route.name);
+              _g.shallowRefresh(this.$route.name, this.$route.query);
             }, 500);
           },
           () => {
@@ -81,8 +81,11 @@ export default {
           res,
           data => {
             _g.toastMsg("success", res.data);
+            if (this.isLastData && this.$route.query.page) {
+              this.$route.query.page -= 1
+            }
             setTimeout(() => {
-              _g.shallowRefresh(this.$route.name);
+              _g.shallowRefresh(this.$route.name, this.$route.query);
             }, 500);
           },
           () => {

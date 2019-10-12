@@ -10,10 +10,14 @@
       <el-table-column label="部门结构" prop="title"></el-table-column>
       <el-table-column label="部门名称" prop="name"></el-table-column>
       <listStatus></listStatus>
-      <listActions :toRouter="'structuresEdit'" :deleteUrl="'admin/structures/'"></listActions>
+      <listActions
+        :toRouter="'structuresEdit'"
+        :deleteUrl="'admin/structures/'"
+        :isLastData="isLastData"
+      ></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
-      <btnGroup :selectedData="multipleSelection" :type="'structures'"></btnGroup>
+      <btnGroup :selectedData="multipleSelection" :type="'structures'" :isLastData="isLastData"></btnGroup>
     </div>
   </div>
 </template>
@@ -28,7 +32,8 @@ export default {
   data() {
     return {
       tableData: [],
-      multipleSelection: []
+      multipleSelection: [],
+      isLastData: false
     };
   },
   methods: {
@@ -55,6 +60,11 @@ export default {
     },
     deleteShow() {
       return _g.getHasRule("structures-delete");
+    }
+  },
+  watch: {
+    tableData(val) {
+      this.isLastData = val.length === 1 ? true : false;
     }
   },
   components: {

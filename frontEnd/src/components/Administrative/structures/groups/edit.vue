@@ -104,7 +104,6 @@ export default {
     },
     getGroups() {
       this.apiGet("admin/groups").then(res => {
-        console.log("res = ", _g.j2s(res));
         this.handelResponse(res, data => {
           _(data).forEach(ret => {
             ret.id = ret.id.toString();

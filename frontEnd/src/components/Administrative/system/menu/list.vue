@@ -14,10 +14,10 @@
         <template scope="scope">{{scope.row.menu_type | menuType}}</template>
       </el-table-column>
       <listStatus></listStatus>
-      <listActions :toRouter="'menuEdit'" :deleteUrl="'admin/menus/'"></listActions>
+      <listActions :toRouter="'menuEdit'" :deleteUrl="'admin/menus/'" :isLastData="isLastData"></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
-      <btnGroup :selectedData="multipleSelection" :type="'menus'"></btnGroup>
+      <btnGroup :selectedData="multipleSelection" :type="'menus'" :isLastData="isLastData"></btnGroup>
     </div>
   </div>
 </template>
@@ -32,7 +32,8 @@ export default {
   data() {
     return {
       tableData: [],
-      multipleSelection: []
+      multipleSelection: [],
+      isLastData: false
     };
   },
   methods: {
@@ -56,6 +57,11 @@ export default {
     },
     deleteShow() {
       return _g.getHasRule("menus-delete");
+    }
+  },
+  watch: {
+    tableData(val) {
+      this.isLastData = val.length === 1 ? true : false;
     }
   },
   components: {
