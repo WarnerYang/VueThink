@@ -13,6 +13,7 @@ var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 // define the different HOST between development and production environment
 var DEV_HOST = JSON.stringify('http://vuethink.test/')
+// var DEV_HOST = JSON.stringify('http://127.0.0.1:9501')
 var PUB_HOST = JSON.stringify('https://vuethink.yanghuaqiang.com/api/')
 
 module.exports = {
@@ -25,7 +26,7 @@ module.exports = {
     filename: '[name].js'
   },
   eslint: {
-    // configFile: './.eslintrc.json'
+    configFile: './.eslintrc.json'
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -47,16 +48,16 @@ module.exports = {
   },
   module: {
     preLoaders: [
-      // {
-      //   test: /\.js$/,
-      //   exclude: /node_modules/,
-      //   loader: 'eslint'
-      // },
-      // {
-      //   test: /\.vue$/,
-      //   exclude: /node_modules/,
-      //   loader: 'eslint'
-      // }
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint'
+      },
+      {
+        test: /\.vue$/,
+        exclude: /node_modules/,
+        loader: 'eslint'
+      }
     ],
     loaders: [
       {

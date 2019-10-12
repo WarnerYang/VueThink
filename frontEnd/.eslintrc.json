@@ -9,14 +9,17 @@
         "sourceType": "module"
     },
     "rules": {
-        "linebreak-style": ["error", "windows"],   // 换行风格
-        "quotes": [1, "single"],                // 引号类型：使用单引号
-        "semi": ["error", "never"],             // 禁止分号作为语句结尾
-        "eqeqeq": 0,                            // 关闭强制使用 '===' 和 '!==' 来做判断比较
-        "no-unused-vars": 0,                    // 关闭强制 声明未使用变量
-        "space-before-function-paren": 0,       // 关闭函数名后的空格
-        "prefer-const": 0,                      // 关闭首选const
-        "no-undef": 0,                          // 关闭不能使用未定义变量
-        "camelcase": 0
+        "linebreak-style": 0, // 换行风格
+        "quotes": 0, // 引号类型
+        "semi": 0, // 分号作为语句结尾
+        "eqeqeq": 0, // 强制使用 '===' 和 '!==' 来做判断比较
+        "no-unused-vars": 0, // 强制声明未使用变量
+        "space-before-function-paren": 0, // 函数名后的空格
+        "prefer-const": 0, // 首选const
+        "no-undef": 0, // 不能使用未定义变量
+        "camelcase": 0,
+        "object-curly-spacing": 0,
+        "indent": 0, // 缩进
+        "eol-last": 0
     }
 }
