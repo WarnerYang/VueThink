@@ -7,7 +7,7 @@
     size="50%"
   >
     <el-table :data="tableData" :row-class-name="tableRowClassName">
-      <el-table-column prop="id" label="权限ID" width="150"></el-table-column>
+      <el-table-column prop="id" label="权限ID" width="100"></el-table-column>
       <el-table-column prop="title" label="权限名称"></el-table-column>
       <el-table-column prop="name" label="权限标识"></el-table-column>
       <el-table-column prop label="操作">

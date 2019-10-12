@@ -1,15 +1,11 @@
 <template>
-  <el-row class="left-menu">
-    <!-- <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-      <el-radio-button :label="false">展开</el-radio-button>
-      <el-radio-button :label="true">收起</el-radio-button>
-    </el-radio-group>-->
+  <el-row>
     <el-col :span="24">
       <el-menu
         :default-active="activeMenu"
         background-color="#304156"
         text-color="rgb(191, 203, 217)"
-        style="border:none;"
+        class="left-menu"
         :collapse="isCollapse"
       >
         <template v-for="(firstMenu, key) in menuData">

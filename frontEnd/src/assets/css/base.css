@@ -56,11 +56,6 @@ body {
   padding: 35px 35px 15px 35px;
 }
 
-.left-menu .el-menu-item i,
-.left-menu .el-submenu__title i {
-    color: rgb(191, 203, 217);
-}
-
 .pages {
     position: absolute;
     top: 20px;
@@ -310,4 +305,20 @@ body {
   font-size: 24px;
   cursor: pointer;
   color: #606266;
+}
+
+.left-menu:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}
+
+.left-menu {
+  background-color: #304156;
+  color:rgb(191, 203, 217);
+  border:none;
+}
+
+.left-menu .el-menu-item i,
+.left-menu .el-submenu__title i {
+    color: rgb(191, 203, 217);
 }
