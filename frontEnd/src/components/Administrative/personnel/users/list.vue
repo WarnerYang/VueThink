@@ -2,12 +2,17 @@
   <div>
     <div class="m-b-20 ovf-hd">
       <div class="fl" v-show="addShow">
-        <router-link class="btn-link-large add-btn" to="add">
+        <router-link class="btn-link-large add-btn m-l-10" to="add">
           <i class="el-icon-plus"></i>&nbsp;&nbsp;添加用户
         </router-link>
       </div>
       <div class="fl w-200 m-l-30">
-        <el-input placeholder="请输入用户名" v-model="keywords">
+        <el-input
+          size="medium"
+          placeholder="请输入用户名"
+          v-model="keywords"
+          @keyup.enter.native="search()"
+        >
           <el-button slot="append" icon="el-icon-search" @click="search()"></el-button>
         </el-input>
       </div>
@@ -16,6 +21,7 @@
       <el-table-column type="selection" width="50"></el-table-column>
       <el-table-column prop="s_name" label="所属组织架构"></el-table-column>
       <el-table-column label="用户名" prop="username"></el-table-column>
+      <el-table-column label="真实姓名" prop="realname"></el-table-column>
       <el-table-column label="备注" prop="remark"></el-table-column>
       <listStatus></listStatus>
       <listActions :toRouter="'usersEdit'" :deleteUrl="'admin/users/'"></listActions>
