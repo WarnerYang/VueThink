@@ -5,7 +5,7 @@
         <i class="el-icon-plus"></i>&nbsp;&nbsp;添加岗位
       </router-link>
     </div>
-    <el-table :data="tableData" style="width: 100%" @selection-change="selectItem">
+    <el-table :data="tableData" @selection-change="selectItem">
       <el-table-column type="selection" width="50"></el-table-column>
       <el-table-column label="岗位名称" prop="name"></el-table-column>
       <el-table-column label="备注" prop="remark"></el-table-column>

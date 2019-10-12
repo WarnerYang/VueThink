@@ -5,8 +5,8 @@
         <i class="el-icon-plus"></i>&nbsp;&nbsp;添加菜单
       </router-link>
     </div>
-    <el-table :data="tableData" style="width: 100%" @selection-change="selectItem">
-      <el-table-column type="selection" :context="_self" width="50"></el-table-column>
+    <el-table :data="tableData" @selection-change="selectItem">
+      <el-table-column type="selection" width="50"></el-table-column>
       <!-- <el-table-column prop="p_title" label="上级菜单" width="150"></el-table-column> -->
       <el-table-column prop="title" label="标题"></el-table-column>
       <el-table-column prop="url" label="路径"></el-table-column>

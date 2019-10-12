@@ -85,14 +85,14 @@ const apiMethods = {
               _g.toastMsg('error', res.error || res.message)
               setTimeout(() => {
                 router.replace('/')
-              }, 1500)
+              }, 500)
             }
             break
           case 103:
             _g.toastMsg('error', res.error || res.message)
             setTimeout(() => {
               router.replace('/')
-            }, 1500)
+            }, 500)
             break
           // case 400:
           //   this.goback()

@@ -5,11 +5,11 @@
         <i class="el-icon-plus"></i>&nbsp;&nbsp;添加节点
       </router-link>
     </div>
-    <el-table :data="tableData" style="width: 100%" @selection-change="selectItem">
-      <el-table-column type="selection" :context="_self" width="50"></el-table-column>
-      <el-table-column prop="p_title" label="节点结构" width="150"></el-table-column>
+    <el-table :data="tableData" @selection-change="selectItem">
+      <el-table-column type="selection" width="50"></el-table-column>
+      <el-table-column prop="p_title" label="节点结构"></el-table-column>
       <el-table-column prop="title" label="显示名"></el-table-column>
-      <el-table-column prop="name" label="名称" width="200"></el-table-column>
+      <el-table-column prop="name" label="名称"></el-table-column>
       <listStatus></listStatus>
       <listActions :toRouter="'ruleEdit'" :deleteUrl="'admin/rules/'"></listActions>
     </el-table>

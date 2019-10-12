@@ -31,7 +31,7 @@ export default {
               _g.toastMsg("success", "删除成功");
               setTimeout(() => {
                 _g.shallowRefresh(this.$route.name, this.$route.query);
-              }, 1500);
+              }, 500);
             });
           });
         })

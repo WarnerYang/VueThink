@@ -108,7 +108,7 @@ export default {
                 _g.clearVuex("setUsers");
                 setTimeout(() => {
                   this.goback();
-                }, 1500);
+                }, 500);
               },
               () => {
                 this.isLoading = !this.isLoading;

@@ -12,11 +12,11 @@
         </el-input>
       </div>
     </div>
-    <el-table :data="tableData" style="width: 100%" @selection-change="selectItem">
+    <el-table :data="tableData" @selection-change="selectItem">
       <el-table-column type="selection" width="50"></el-table-column>
       <el-table-column prop="s_name" label="所属组织架构"></el-table-column>
-      <el-table-column label="用户名" prop="username" width="200"></el-table-column>
-      <el-table-column label="备注" prop="remark" width="200"></el-table-column>
+      <el-table-column label="用户名" prop="username"></el-table-column>
+      <el-table-column label="备注" prop="remark"></el-table-column>
       <listStatus></listStatus>
       <listActions :toRouter="'usersEdit'" :deleteUrl="'admin/users/'"></listActions>
     </el-table>

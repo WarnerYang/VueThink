@@ -54,7 +54,7 @@ export default {
             _g.toastMsg("success", word + "成功");
             setTimeout(() => {
               _g.shallowRefresh(this.$route.name);
-            }, 1500);
+            }, 500);
           },
           () => {
             if (cate == 1) {
@@ -83,7 +83,7 @@ export default {
             _g.toastMsg("success", res.data);
             setTimeout(() => {
               _g.shallowRefresh(this.$route.name);
-            }, 1500);
+            }, 500);
           },
           () => {
             this.deleteLoading = !this.deleteLoading;

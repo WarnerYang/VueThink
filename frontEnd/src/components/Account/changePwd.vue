@@ -62,7 +62,7 @@ export default {
                 Lockr.rm("sessionId");
                 setTimeout(() => {
                   router.replace("/");
-                }, 1500);
+                }, 500);
               },
               () => {
                 this.disable = !this.disable;

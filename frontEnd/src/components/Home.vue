@@ -1,7 +1,7 @@
 <template>
   <el-container class="home-container">
     <el-aside class="home-left">
-      <el-col class="sys-title">
+      <el-col v-if="isCollapse===false" class="sys-title">
         <template v-if="logo_type == '1'">
           <img :src="img" class="logo" />
         </template>
@@ -9,24 +9,37 @@
           <h3>{{title}}</h3>
         </template>
       </el-col>
-      <leftMenu :menuData="menuData" :activeMenu="activeMenu" ref="leftMenu"></leftMenu>
+      <leftMenu
+        :menuData="menuData"
+        :activeMenu="activeMenu"
+        :isCollapse="isCollapse"
+        :ref="leftMenu"
+      ></leftMenu>
     </el-aside>
 
     <el-container class="home-right">
       <el-header class="home-header">
-        <el-col :span="20">
-          <el-breadcrumb separator="/">
-            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item>
-              <a href="/">活动管理</a>
-            </el-breadcrumb-item>
-            <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-            <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-          </el-breadcrumb>
+        <el-col :span="18" class="top-bar">
+          <el-col :span="2">
+            <span class="toggle-menu" @click="toggleMenu">
+              <i v-if="isCollapse===true" class="el-icon-s-unfold"></i>
+              <i v-else class="el-icon-s-fold"></i>
+            </span>
+          </el-col>
+          <el-col :span="22">
+            <!-- <el-breadcrumb separator="/">
+              <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+              <el-breadcrumb-item>
+                <a href="/">活动管理</a>
+              </el-breadcrumb-item>
+              <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+              <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+            </el-breadcrumb> -->
+          </el-col>
         </el-col>
-        <el-col :span="4" class="user">
-          <el-dropdown trigger="click" @command="handleMenu" class="user-menu2">
-            <span class="el-dropdown-link" style="cursor: pointer">
+        <el-col :span="6" class="user">
+          <el-dropdown trigger="click" @command="handleMenu">
+            <span class="el-dropdown-link">
               {{username}}
               <i class="el-icon-arrow-down" aria-hidden="true"></i>
             </span>
@@ -39,7 +52,7 @@
       </el-header>
 
       <el-main class="home-main">
-        <section :class="{'hide-leftMenu': hasChildMenu}">
+        <section>
           <el-col :span="24" class="bg-wh content-container">
             <transition name="fade" mode="out-in" appear>
               <router-view v-loading="showLoading"></router-view>
@@ -62,16 +75,12 @@ export default {
   data() {
     return {
       username: "",
-      topMenu: [],
-      childMenu: [],
       menuData: [],
-      hasChildMenu: false,
       menu: null,
-      module: null,
       img: "",
       title: "",
       logo_type: null,
-      active: null
+      isCollapse: false
     };
   },
   methods: {
@@ -100,19 +109,12 @@ export default {
               _g.toastMsg("success", "退出成功");
               setTimeout(() => {
                 router.replace("/");
-              }, 1500);
+              }, 500);
             });
           });
         })
         .catch(() => {});
     },
-    // switchTopMenu(item) {
-    //   if (!item.child) {
-    //     router.push(item.url);
-    //   } else {
-    //     router.push(item.child[0].child[0].url);
-    //   }
-    // },
     handleMenu(val) {
       switch (val) {
         case "logout":
@@ -138,6 +140,13 @@ export default {
     },
     getUsername() {
       this.username = Lockr.get("userInfo").username;
+    },
+    toggleMenu() {
+      if (this.isCollapse) {
+        this.isCollapse = false;
+      } else {
+        this.isCollapse = true;
+      }
     }
   },
   created() {
@@ -148,22 +157,14 @@ export default {
       _g.toastMsg("warning", "您尚未登录");
       setTimeout(() => {
         router.replace("/");
-      }, 1500);
+      }, 500);
       return;
     }
     this.getUsername();
     this.activeMenu = this.$route.meta.activeMenu;
     this.menuData = Lockr.get("menus");
   },
-  computed: {
-    // routerShow() {
-    //   return store.state.routerShow;
-    // },
-    // showLeftMenu() {
-    //   this.hasChildMenu = store.state.showLeftMenu;
-    //   return store.state.showLeftMenu;
-    // }
-  },
+  computed: {},
   components: {
     leftMenu,
     changePwd

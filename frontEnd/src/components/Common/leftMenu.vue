@@ -40,11 +40,10 @@
 
 <script>
 export default {
-  props: ["menuData", "menu", "topMenu", "activeMenu"],
+  props: ["menuData", "menu", "topMenu", "activeMenu", "isCollapse"],
   data() {
     return {
-      filling: "0000",
-      isCollapse: false
+      filling: "0000"
     };
   },
   methods: {

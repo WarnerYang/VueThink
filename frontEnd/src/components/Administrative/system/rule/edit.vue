@@ -63,7 +63,7 @@ export default {
                 _g.toastMsg("success", "编辑成功");
                 setTimeout(() => {
                   this.goback();
-                }, 1500);
+                }, 500);
               },
               () => {
                 this.isLoading = !this.isLoading;
