@@ -80,7 +80,7 @@ export default {
       img: "",
       title: "",
       logo_type: null,
-      isCollapse: false
+      isCollapse: document.body.clientWidth < 768 ? true : false
     };
   },
   methods: {
