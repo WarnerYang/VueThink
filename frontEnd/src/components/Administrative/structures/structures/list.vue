@@ -39,6 +39,8 @@ export default {
   methods: {
     selectItem(val) {
       this.multipleSelection = val;
+      this.isLastData =
+        this.multipleSelection.length === this.tableData.length ? true : false;
     },
     getStructures() {
       this.apiGet("admin/structures").then(res => {

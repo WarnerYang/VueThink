@@ -19,25 +19,23 @@
 
     <el-container class="home-right">
       <el-header class="home-header">
-        <el-col :span="18" class="top-bar">
-          <el-col :span="2">
-            <span class="toggle-menu" @click="toggleMenu">
-              <i v-if="isCollapse===true" class="el-icon-s-unfold"></i>
-              <i v-else class="el-icon-s-fold"></i>
-            </span>
-          </el-col>
-          <el-col :span="22">
-            <!-- <el-breadcrumb separator="/">
-              <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-              <el-breadcrumb-item>
-                <a href="/">活动管理</a>
-              </el-breadcrumb-item>
-              <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-              <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-            </el-breadcrumb> -->
-          </el-col>
+        <el-col :span="1">
+          <span class="toggle-menu" @click="toggleMenu">
+            <i v-if="isCollapse===true" class="el-icon-s-unfold"></i>
+            <i v-else class="el-icon-s-fold"></i>
+          </span>
         </el-col>
-        <el-col :span="6" class="user">
+        <el-col :span="18" class="crumb">
+          <!-- <el-breadcrumb separator="/">
+            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item>
+              <a href="/">活动管理</a>
+            </el-breadcrumb-item>
+            <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+            <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+          </el-breadcrumb>-->
+        </el-col>
+        <el-col :span="5" class="user">
           <el-dropdown trigger="click" @command="handleMenu">
             <span class="el-dropdown-link">
               {{username}}
@@ -52,6 +50,9 @@
       </el-header>
 
       <el-main class="home-main">
+        <div class="refresh" @click="refresh">
+          <i class="el-icon-refresh"></i>
+        </div>
         <section>
           <el-col :span="24" class="bg-wh content-container">
             <transition name="fade" mode="out-in" appear>
@@ -147,6 +148,11 @@ export default {
       } else {
         this.isCollapse = true;
       }
+    },
+    refresh() {
+      console.log(this.$route);
+
+      _g.shallowRefresh(this.$route.name, this.$route.query);
     }
   },
   created() {

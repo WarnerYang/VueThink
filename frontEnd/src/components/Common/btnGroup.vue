@@ -80,13 +80,13 @@ export default {
         this.handelResponse(
           res,
           data => {
-            _g.toastMsg("success", res.data);
-            if (this.isLastData && this.$route.query.page) {
-              this.$route.query.page -= 1
+            let query = this.$route.query;
+            if (this.isLastData && query.page) {
+              query.page -= 1;
+              if (query.page === 0) delete query.page;
             }
-            setTimeout(() => {
-              _g.shallowRefresh(this.$route.name, this.$route.query);
-            }, 500);
+            _g.toastMsg("success", res.data);
+            _g.shallowRefresh(this.$route.name, this.$route.query);
           },
           () => {
             this.deleteLoading = !this.deleteLoading;

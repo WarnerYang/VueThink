@@ -28,15 +28,7 @@
     </el-table>
     <div class="pos-rel p-t-20">
       <btnGroup :selectedData="multipleSelection" :type="'users'" :isLastData="isLastData"></btnGroup>
-      <div class="block pages">
-        <el-pagination
-          @current-change="handleCurrentChange"
-          layout="prev, pager, next"
-          :page-size="limit"
-          :current-page="currentPage"
-          :total="dataCount"
-        ></el-pagination>
-      </div>
+      <pagination ref="pagination" :total="dataCount" class="block pages"></pagination>
     </div>
   </div>
 </template>
@@ -45,6 +37,7 @@
 import btnGroup from "../../../Common/btnGroup.vue";
 import listStatus from "../../../Common/listStatus.vue";
 import listActions from "../../../Common/listActions.vue";
+import pagination from "../../../Common/pagination.vue";
 import http from "../../../../assets/js/http";
 
 export default {
@@ -52,10 +45,8 @@ export default {
     return {
       tableData: [],
       dataCount: null,
-      currentPage: null,
       keywords: "",
       multipleSelection: [],
-      limit: 15,
       isLastData: false
     };
   },
@@ -68,20 +59,16 @@ export default {
     },
     selectItem(val) {
       this.multipleSelection = val;
-    },
-    handleCurrentChange(page) {
-      router.push({
-        path: this.$route.path,
-        query: { keywords: this.keywords, page: page }
-      });
+      this.isLastData =
+        this.multipleSelection.length === this.tableData.length ? true : false;
     },
     getAllUsers() {
       this.loading = true;
       const data = {
         params: {
           keywords: this.keywords,
-          page: this.currentPage,
-          limit: this.limit
+          page: this.$refs.pagination.currentPage,
+          limit: this.$refs.pagination.limit
         }
       };
       this.apiGet("admin/users", data).then(res => {
@@ -90,16 +77,6 @@ export default {
           this.dataCount = data.dataCount;
         });
       });
-    },
-    getCurrentPage() {
-      let data = this.$route.query;
-      if (data) {
-        if (data.page) {
-          this.currentPage = parseInt(data.page);
-        } else {
-          this.currentPage = 1;
-        }
-      }
     },
     getKeywords() {
       let data = this.$route.query;
@@ -113,11 +90,10 @@ export default {
     },
     init() {
       this.getKeywords();
-      this.getCurrentPage();
       this.getAllUsers();
     }
   },
-  created() {
+  mounted() {
     this.init();
   },
   computed: {
@@ -142,7 +118,8 @@ export default {
   components: {
     btnGroup,
     listStatus,
-    listActions
+    listActions,
+    pagination
   },
   mixins: [http]
 };
