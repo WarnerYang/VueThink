@@ -50,9 +50,9 @@
       </el-header>
 
       <el-main class="home-main">
-        <div class="refresh" @click="refresh">
+        <!-- <div class="refresh" @click="refresh">
           <i class="el-icon-refresh"></i>
-        </div>
+        </div> -->
         <section>
           <el-col :span="24" class="bg-wh content-container">
             <transition name="fade" mode="out-in" appear>

@@ -310,9 +310,7 @@ body {
   font-size: 24px;
   cursor: pointer;
   color: #606266;
-  position: absolute;
-  right: 40px;
-  top: 72px;;
+  margin: 5px 40px 0;
 }
 .refresh:active{
   color: #047ce2;
