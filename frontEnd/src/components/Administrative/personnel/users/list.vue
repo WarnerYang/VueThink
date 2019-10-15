@@ -10,6 +10,7 @@
         <el-input
           size="medium"
           placeholder="请输入用户名"
+          clearable
           v-model="keywords"
           @keyup.enter.native="search()"
         >
@@ -52,9 +53,14 @@ export default {
   },
   methods: {
     search() {
+      this.$refs.pagination.currentPage = 1;
+      const query = {
+        ...this.$route.query,
+        ...{ keywords: this.keywords, page: 1 }
+      };
       router.push({
         path: this.$route.path,
-        query: { keywords: this.keywords, page: 1 }
+        query: query
       });
     },
     selectItem(val) {
@@ -79,14 +85,8 @@ export default {
       });
     },
     getKeywords() {
-      let data = this.$route.query;
-      if (data) {
-        if (data.keywords) {
-          this.keywords = data.keywords;
-        } else {
-          this.keywords = "";
-        }
-      }
+      let query = this.$route.query;
+      this.keywords = query.keywords ? query.keywords : "";
     },
     init() {
       this.getKeywords();
