@@ -1,10 +1,19 @@
-<template>
-  <el-table-column :label="label||'操作'" :width="width">
+<template >
+  <el-table-column v-if="showColumm" :label="label||'操作'" :width="width">
     <template scope="scope">
-      <router-link :to="{ name: toRouter, params: { id: scope.row.id }}" class="p-r-10">
+      <router-link
+        v-show="editShow"
+        :to="{ name: toRouter, params: { id: scope.row.id }}"
+        class="p-r-10"
+      >
         <el-link type="primary" icon="el-icon-edit">编辑</el-link>
       </router-link>
-      <el-link type="danger" icon="el-icon-delete" @click="confirmDelete(scope.row)">删除</el-link>
+      <el-link
+        v-show="deleteShow"
+        type="danger"
+        icon="el-icon-delete"
+        @click="confirmDelete(scope.row)"
+      >删除</el-link>
     </template>
   </el-table-column>
 </template>
@@ -12,7 +21,12 @@
 <script>
 import http from "../../assets/js/http";
 export default {
-  props: ["label", "width", "toRouter", "deleteUrl", "isLastData"],
+  props: ["label", "width", "toRouter", "deleteUrl", "isLastData", "type"],
+  data() {
+    return {
+      showColumm: true
+    };
+  },
   methods: {
     confirmDelete(item) {
       const title = item.else || item.name || item.title || item.username || "";
@@ -41,6 +55,17 @@ export default {
         .catch(e => {
           console.error(e);
         });
+    }
+  },
+  created() {
+    this.showColumm = this.editShow || this.deleteShow ? true : false;
+  },
+  computed: {
+    editShow() {
+      return _g.getHasRule("admin-" + this.type + "-update");
+    },
+    deleteShow() {
+      return _g.getHasRule("admin-" + this.type + "-delete");
     }
   },
   mixins: [http]

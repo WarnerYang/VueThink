@@ -10,7 +10,12 @@
       <el-table-column label="岗位名称" prop="name"></el-table-column>
       <el-table-column label="备注" prop="remark"></el-table-column>
       <listStatus></listStatus>
-      <listActions :toRouter="'positionEdit'" :deleteUrl="'admin/posts/'" :isLastData="isLastData"></listActions>
+      <listActions
+        :toRouter="'positionEdit'"
+        :deleteUrl="'admin/posts/'"
+        :isLastData="isLastData"
+        :type="'posts'"
+      ></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
       <btnGroup :selectedData="multipleSelection" :type="'posts'" :isLastData="isLastData"></btnGroup>
@@ -51,13 +56,7 @@ export default {
   },
   computed: {
     addShow() {
-      return _g.getHasRule("posts-save");
-    },
-    editShow() {
-      return _g.getHasRule("posts-update");
-    },
-    deleteShow() {
-      return _g.getHasRule("posts-delete");
+      return _g.getHasRule("admin-posts-save");
     }
   },
   watch: {

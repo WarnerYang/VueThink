@@ -11,7 +11,12 @@
       <el-table-column prop="title" label="显示名"></el-table-column>
       <el-table-column prop="name" label="名称"></el-table-column>
       <listStatus></listStatus>
-      <listActions :toRouter="'ruleEdit'" :deleteUrl="'admin/rules/'" :isLastData="isLastData"></listActions>
+      <listActions
+        :toRouter="'ruleEdit'"
+        :deleteUrl="'admin/rules/'"
+        :isLastData="isLastData"
+        :type="'rules'"
+      ></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
       <btnGroup :selectedData="multipleSelection" :type="'rules'" :isLastData="isLastData"></btnGroup>
@@ -49,13 +54,7 @@ export default {
   },
   computed: {
     addShow() {
-      return _g.getHasRule("rules-save");
-    },
-    editShow() {
-      return _g.getHasRule("rules-update");
-    },
-    deleteShow() {
-      return _g.getHasRule("rules-delete");
+      return _g.getHasRule("admin-rules-save");
     }
   },
   watch: {

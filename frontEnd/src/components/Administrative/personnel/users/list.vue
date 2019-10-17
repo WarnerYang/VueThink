@@ -25,7 +25,12 @@
       <el-table-column label="真实姓名" prop="realname"></el-table-column>
       <el-table-column label="备注" prop="remark"></el-table-column>
       <listStatus></listStatus>
-      <listActions :toRouter="'usersEdit'" :deleteUrl="'admin/users/'" :isLastData="isLastData"></listActions>
+      <listActions
+        :toRouter="'usersEdit'"
+        :deleteUrl="'admin/users/'"
+        :isLastData="isLastData"
+        :type="'users'"
+      ></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
       <btnGroup :selectedData="multipleSelection" :type="'users'" :isLastData="isLastData"></btnGroup>
@@ -98,13 +103,7 @@ export default {
   },
   computed: {
     addShow() {
-      return _g.getHasRule("users-save");
-    },
-    editShow() {
-      return _g.getHasRule("users-update");
-    },
-    deleteShow() {
-      return _g.getHasRule("users-delete");
+      return _g.getHasRule("admin-users-save");
     }
   },
   watch: {

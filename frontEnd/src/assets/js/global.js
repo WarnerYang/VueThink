@@ -44,12 +44,11 @@ const commonFn = {
     store.dispatch(cate, [])
   },
   getHasRule(val) {
-    const moduleRule = 'admin'
-    let userInfo = Lockr.get('userInfo')
+    const userInfo = Lockr.get('userInfo')
     if (userInfo.id == 1) {
       return true
     } else {
-      let authList = moduleRule + Lockr.get('authList')
+      const authList = Lockr.get('authList')
       return _.includes(authList, val)
     }
   }

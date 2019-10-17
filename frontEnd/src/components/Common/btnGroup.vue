@@ -1,8 +1,8 @@
 <template>
   <div>
-    <el-button :loading="enableLoading" size="small" @click="changeAttrInBtnGroup(1)">启用</el-button>
-    <el-button :loading="disableLoading" size="small" @click="changeAttrInBtnGroup(0)">禁用</el-button>
-    <el-button :loading="deleteLoading" size="small" @click="deleteDatasInBtnGroup()">删除</el-button>
+    <el-button v-show="enableShow" :loading="enableLoading" size="small" @click="changeAttrInBtnGroup(1)">启用</el-button>
+    <el-button v-show="enableShow" :loading="disableLoading" size="small" @click="changeAttrInBtnGroup(0)">禁用</el-button>
+    <el-button v-show="deletesShow" :loading="deleteLoading" size="small" @click="deleteDatasInBtnGroup()">删除</el-button>
   </div>
 </template>
 
@@ -97,10 +97,10 @@ export default {
   },
   computed: {
     enableShow() {
-      return _g.getHasRule(this.type + "-enables");
+      return _g.getHasRule("admin-" + this.type + "-enables");
     },
     deletesShow() {
-      return _g.getHasRule(this.type + "-deletes");
+      return _g.getHasRule("admin-" + this.type + "-deletes");
     }
   },
   mixins: [http]

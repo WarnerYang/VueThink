@@ -14,6 +14,7 @@
         :toRouter="'structuresEdit'"
         :deleteUrl="'admin/structures/'"
         :isLastData="isLastData"
+        :type="'structures'"
       ></listActions>
     </el-table>
     <div class="pos-rel p-t-20">
@@ -55,13 +56,7 @@ export default {
   },
   computed: {
     addShow() {
-      return _g.getHasRule("structures-save");
-    },
-    editShow() {
-      return _g.getHasRule("structures-update");
-    },
-    deleteShow() {
-      return _g.getHasRule("structures-delete");
+      return _g.getHasRule("admin-structures-save");
     }
   },
   watch: {
