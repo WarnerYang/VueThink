@@ -43,7 +43,7 @@ class Menu extends Common
 		$data = $this
 			->alias('menu')
 			->where('menu.id', $id)
-			->join('__ADMIN_RULE__ rule', 'menu.rule_id=rule.id', 'LEFT')
+			->join('admin_rule rule', 'menu.rule_id=rule.id', 'LEFT')
 			->field('menu.*, rule.title as rule_name')
 			->find();
 		if (!$data) {

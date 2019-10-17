@@ -154,7 +154,7 @@ class Common extends Model
 	 * [enableDatas 批量启用、禁用]
 	 * @AuthorHTL
 	 * @DateTime  2017-02-11T21:01:58+0800
-	 * @param     string                   $ids    [主键数组]
+	 * @param     array                   $ids    [主键数组]
 	 * @param     integer                  $status [状态1启用0禁用]
 	 * @param     [boolean]                $delSon [是否删除子孙数组]
 	 * @return    [type]                           [description]
