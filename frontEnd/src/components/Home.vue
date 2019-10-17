@@ -1,7 +1,7 @@
 <template>
   <el-container class="home-container">
     <el-aside class="home-left">
-      <el-col v-if="isCollapse===false" class="sys-title">
+      <el-col v-if="!isCollapse" class="sys-title">
         <template v-if="logo_type == '1'">
           <img :src="img" class="logo" />
         </template>
@@ -21,7 +21,7 @@
       <el-header class="home-header">
         <el-col :span="1">
           <span class="toggle-menu" @click="toggleMenu">
-            <i v-if="isCollapse===true" class="el-icon-s-unfold"></i>
+            <i v-if="isCollapse" class="el-icon-s-unfold"></i>
             <i v-else class="el-icon-s-fold"></i>
           </span>
         </el-col>
@@ -52,7 +52,7 @@
       <el-main class="home-main">
         <!-- <div class="refresh" @click="refresh">
           <i class="el-icon-refresh"></i>
-        </div> -->
+        </div>-->
         <section>
           <el-col :span="24" class="bg-wh content-container">
             <transition name="fade" mode="out-in" appear>
@@ -77,7 +77,6 @@ export default {
     return {
       username: "",
       menuData: [],
-      menu: null,
       img: "",
       title: "",
       logo_type: null,
@@ -143,15 +142,9 @@ export default {
       this.username = Lockr.get("userInfo").username;
     },
     toggleMenu() {
-      if (this.isCollapse) {
-        this.isCollapse = false;
-      } else {
-        this.isCollapse = true;
-      }
+      this.isCollapse = this.isCollapse ? false : true;
     },
     refresh() {
-      console.log(this.$route);
-
       _g.shallowRefresh(this.$route.name, this.$route.query);
     }
   },

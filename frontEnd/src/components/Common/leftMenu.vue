@@ -36,7 +36,7 @@
 
 <script>
 export default {
-  props: ["menuData", "menu", "topMenu", "activeMenu", "isCollapse"],
+  props: ["menuData", "activeMenu", "isCollapse"],
   data() {
     return {
       filling: "0000"

@@ -54,8 +54,6 @@ export default {
         pid: "",
         menu_type: "",
         url: "",
-        module: "",
-        menu: "",
         sort: ""
       },
       options: [{ id: 0, title: "无" }],
@@ -63,7 +61,6 @@ export default {
         title: [{ required: true, message: "请输入菜单标题" }],
         rule_name: [{ required: true, message: "请绑定权限标识" }],
         menu_type: [{ required: true, message: "请选择菜单类型" }],
-        module: [{ required: true, message: "请填写菜单模块" }],
         pid: [{ type: "number", required: true, message: "请选择上级菜单" }]
       }
     };
