@@ -3,7 +3,7 @@
 body {
   margin: 0px;
   padding: 0px;
-  background: #304156;
+  background: #303133;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -225,7 +225,7 @@ body {
 .sys-title {
   height: 60px;
   text-align: center;
-  background-color: #304156;
+  background-color: #303133;
   color: #fff;
   padding: 5px;
 }
@@ -322,7 +322,7 @@ body {
 }
 
 .left-menu {
-  background-color: #304156;
+  background-color: #303133;
   color:rgb(191, 203, 217);
   border:none;
 }

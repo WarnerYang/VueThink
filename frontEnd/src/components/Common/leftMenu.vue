@@ -3,8 +3,8 @@
     <el-col :span="24">
       <el-menu
         :default-active="activeMenu"
-        background-color="#304156"
-        text-color="rgb(191, 203, 217)"
+        background-color="#303133"
+        text-color="#c0ccda"
         class="left-menu"
         :collapse="isCollapse"
       >
