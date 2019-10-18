@@ -31,7 +31,7 @@ class User extends Common
 	 */
 	public function groups()
 	{
-		return $this->belongsToMany('group', '__admin_access__', 'group_id', 'user_id');
+		return $this->belongsToMany('group', 'admin_access', 'group_id', 'user_id');
 	}
 
 	/**
@@ -57,8 +57,8 @@ class User extends Common
 		$list = $this
 			->where($map)
 			->alias('user')
-			->join('__ADMIN_STRUCTURE__ structure', 'structure.id=user.structure_id', 'LEFT')
-			->join('__ADMIN_POST__ post', 'post.id=user.post_id', 'LEFT');
+			->join('admin_structure structure', 'structure.id=user.structure_id', 'LEFT')
+			->join('admin_post post', 'post.id=user.post_id', 'LEFT');
 
 		// 若有分页
 		if ($page && $limit) {
