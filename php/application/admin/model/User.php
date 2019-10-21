@@ -247,7 +247,7 @@ class User extends Common
 		$info['_AUTH_LIST_'] = $dataList['rulesList'];
 		$info['authKey'] = $authKey;
 		cache('Auth_' . $authKey, null);
-		cache('Auth_' . $authKey, $info, config('LOGIN_SESSION_VALID'));
+		cache('Auth_' . $authKey, $info, (int) config('LOGIN_SESSION_VALID'));
 		// 返回信息
 		$data['authKey']		= $authKey;
 		$data['sessionId']		= $info['sessionId'];
@@ -298,7 +298,7 @@ class User extends Common
 			$cache['userInfo'] = $userInfo;
 			$cache['authKey'] = user_md5($userInfo['username'] . $userInfo['password'] . session_id());
 			cache('Auth_' . $auth_key, null);
-			cache('Auth_' . $cache['authKey'], $cache, config('LOGIN_SESSION_VALID'));
+			cache('Auth_' . $cache['authKey'], $cache, (int) config('LOGIN_SESSION_VALID'));
 			return $cache['authKey']; //把auth_key传回给前端
 		}
 
